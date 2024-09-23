@@ -183,7 +183,7 @@ class NfceService
             if ($nfe->getErrors() != null)
                 $retorno->erro = $nfe->getErrors();
             else
-                $retorno->erro = $e->getMessage();
+                $retorno->erro = $e->getMessage().$e->getLine().$e->getFile();
         }
         return $retorno;
     }
