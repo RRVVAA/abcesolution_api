@@ -374,6 +374,7 @@ class NfceService
         $pastaAmbiente = ($nfce->tpAmb == "1") ? "producao" : "homologacao";
         //$path01 = "storage/" . $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
         $path01 = $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
+        dd($path01);
         $pathGet01 = Storage::disk('arquivos')->get($path01);
         $req = file_get_contents($pathGet01);
 
