@@ -156,6 +156,8 @@ class NfceService
                 $pathPut = Storage::disk('arquivos')->put($pathXML, $xml);
                 Storage::disk('arquivos')->setVisibility($pathPut, 'public');
 
+                dd($pathPut);
+
                 Nfce::where("id", $notafiscal->nota->id)->update(["chave" => $chave]);
                 $tem = NfceXml::where("nfce_id", $notafiscal->nota->id)->first();
                 if (!$tem) {
