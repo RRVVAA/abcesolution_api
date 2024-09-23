@@ -144,17 +144,17 @@ class NfceService
                 $xml = $nfe->getXML();
                 $chave = $nfe->getChave();
 
-                $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/";
+                /*$path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/";
                 $nome_arquivo = $chave . "-nfce.xml";
                 if (!file_exists($path)) {
                     mkdir($path, 07777, true);
                 }
                 file_put_contents($path . $nome_arquivo, $xml);
-                chmod($path, 07777);
+                chmod($path, 07777);*/
 
-                /*$pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/".$chave . "-nfce.xml";
-                $pathPut = Storage::disk('arquivos')->put($pathIMG, $xml);
-                Storage::disk('arquivos')->setVisibility($pathPut, 'public');*/
+                $pathXML = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/".$chave . "-nfce.xml";
+                $pathPut = Storage::disk('arquivos')->put($pathXML, $xml);
+                Storage::disk('arquivos')->setVisibility($pathPut, 'public');
 
                 Nfce::where("id", $notafiscal->nota->id)->update(["chave" => $chave]);
                 $tem = NfceXml::where("nfce_id", $notafiscal->nota->id)->first();
@@ -196,7 +196,7 @@ class NfceService
         try {
             $response = self::$tools->signNFe($xml);
 
-            $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/";
+            /*$path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/";
             $nome_arquivo = $chave . "-nfce.xml";
 
             if (!file_exists($path)) {
@@ -204,11 +204,11 @@ class NfceService
             }
 
             file_put_contents($path . $nome_arquivo, $response);
-            chmod($path, 07777);
+            chmod($path, 07777);*/
 
-            /*$pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/".$chave . "-nfce.xml";
-            $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($response));
-            Storage::disk('arquivos')->setVisibility($pathPut, 'public');*/
+            $pathXML = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/".$chave . "-nfce.xml";
+            $pathPut = Storage::disk('arquivos')->put($pathXML, file_get_contents($response));
+            Storage::disk('arquivos')->setVisibility($pathPut, 'public');
 
             Nfce::where("id", $notafiscal->nota->id)->update(["status_id" => config('constantes.status.ERRO_AO_GERAR_XML')]);
             $retorno->tem_erro = false;
@@ -250,17 +250,17 @@ class NfceService
                 $nome_arquivo = $chave . "-nfce.xml";
                 $protocolo = $std->protNFe->infProt->nProt;
 
-                if (!file_exists($path)) {
+                /*if (!file_exists($path)) {
                     mkdir($path, 07777, true);
                 }
 
                 file_put_contents($path . $nome_arquivo, $xml_autorizado);
-                chmod($path, 07777);
+                chmod($path, 07777);*/
 
-                /*$pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
-                $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($xml_autorizado));
+                $pathXML = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
+                $pathPut = Storage::disk('arquivos')->put($pathXML, file_get_contents($xml_autorizado));
                 Storage::disk('arquivos')->setVisibility($pathPut, 'public');
-                $protocolo = $std->protNFe->infProt->nProt;*/
+                $protocolo = $std->protNFe->infProt->nProt;
 
                 Nfce::where("id", $notafiscal->nota->id)->update(["protocolo" => $protocolo, "status_id" => config('constantes.status.AUTORIZADO')]);
 
@@ -323,8 +323,8 @@ class NfceService
                     file_put_contents($path, $xml_autorizado);
                     chmod($path, 07777);*/
 
-                    $pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
-                    $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($xml_autorizado));
+                    $pathXML = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
+                    $pathPut = Storage::disk('arquivos')->put($pathXML, file_get_contents($xml_autorizado));
                     Storage::disk('arquivos')->setVisibility($pathPut, 'public');
 
                     $retorno->tem_erro = false;
@@ -489,11 +489,13 @@ class NfceService
         try {
             $chave = $notafiscal->nota->chave;
             $response = self::$tools->sefazConsultaChave($chave);
-            $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/cancelado/";
+            /*$path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/cancelado/";
             $nome_arquivo = $notafiscal->nota->chave . "-nfce.xml";
             if (!file_exists($path)) {
                 mkdir($path, 07777, true);
-            }
+            }*/
+
+            $pathXML = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/cancelado/".$notafiscal->nota->chave . "-nfce.xml";
 
             $stdCl = new Standardize($response);
             $std = $stdCl->toStd();
@@ -514,8 +516,12 @@ class NfceService
                 $cStat = $std->retEvento->infEvento->cStat;
                 if ($cStat == '101' || $cStat == '135' || $cStat == '155') {
                     $xml_cancelado = Complements::toAuthorize(self::$tools->lastRequest, $response);
-                    file_put_contents($path . $nome_arquivo, $xml_cancelado);
-                    chmod($path, 07777);
+                    /*file_put_contents($path . $nome_arquivo, $xml_cancelado);
+                    chmod($path, 07777);*/
+
+                    $pathPut = Storage::disk('arquivos')->put($pathXML, file_get_contents($xml_cancelado));
+                    Storage::disk('arquivos')->setVisibility($pathPut, 'public');
+
                     Nfce::where("id", $notafiscal->nota->id)->update(["status_id" => config("constantes.status.CANCELADO")]);
 
                     $retorno->tem_erro = false;
