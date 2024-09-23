@@ -36,7 +36,9 @@ Route::post('/login/logarPdv', [LoginController::class, 'logarPdv']);
 Route::post('/login/logarLoja', [LoginController::class, 'logarLoja']);
 Route::post('/login/logarBalcao', [LoginController::class, 'logarBalcao']);
 
-
+Route::get('testeapi', [TesteController::class, 'testeapi']);
+Route::post('teste/vendapix', [TesteController::class, 'vendapix']);
+Route::post('lojawebhook/pix', [LojaWebHookController::class, 'pix']);
 
 //Empresa
 Route::get('/empresa', [EmpresaApiController::class, 'index']);
@@ -238,9 +240,6 @@ Route::get('/pdv/imprimirNfcePelaVenda/{id}',[PdvController::class, 'imprimirNfc
 Route::get('/pdv/imprimirNfcePeloNfce/{id}',[PdvController::class, 'imprimirNfcePeloNfce'])->name('pdv.imprimirNfcePeloNfce');
 Route::get('/pdv/imprimirNfcePelaChave/{id}',[PdvController::class, 'imprimirNfcePelaChave'])->name('pdv.imprimirNfcePelaChave');
 
-Route::get('testeapi', [TesteController::class, 'testeapi']);
-Route::post('teste/vendapix', [TesteController::class, 'vendapix']);
-Route::post('lojawebhook/pix', [LojaWebHookController::class, 'pix']);
 Route::get('lojawebhook/pagamento/{id}', [LojaWebHookController::class, 'obterPagamento']);
 Route::post('lojawebhook/cartao', [LojaWebHookController::class, 'cartao']);
 Route::post('lojawebhook/boleto', [LojaWebHookController::class, 'boleto']);
@@ -250,7 +249,6 @@ Route::get('faturawebhook/pagamento/{id}', [FaturaWebHookController::class, 'obt
 Route::post('faturawebhook/cartao', [FaturaWebHookController::class, 'cartao']);
 Route::post('faturawebhook/boleto', [FaturaWebHookController::class, 'boleto']);
 Route::get('faturawebhook/testePagamento/{id}', [FaturaWebHookController::class, 'testePagamento']);
-
 
 //NFE
 Route::post('/nfe/transmitir',[NfeController::class, 'transmitir']);
