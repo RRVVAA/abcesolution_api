@@ -152,8 +152,6 @@ class NfceService
                 file_put_contents($path . $nome_arquivo, $xml);
                 chmod($path, 07777);*/
 
-                dd($xml);
-
                 $pathXML = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/".$chave . "-nfce.xml";
                 $pathPut = Storage::disk('arquivos')->put($pathXML, $xml);
                 Storage::disk('arquivos')->setVisibility($pathPut, 'public');
