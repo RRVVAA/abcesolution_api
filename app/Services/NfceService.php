@@ -155,7 +155,7 @@ class NfceService
                 chmod($path, 07777);*/
 
                 $pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/".$chave . "-nfce.xml";
-                $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($xml));
+                $pathPut = Storage::disk('arquivos')->put($pathIMG, $xml);
                 Storage::disk('arquivos')->setVisibility($pathPut, 'public');
 
                 Nfce::where("id", $notafiscal->nota->id)->update(["chave" => $chave]);
