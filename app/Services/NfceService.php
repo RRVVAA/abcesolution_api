@@ -118,7 +118,6 @@ class NfceService
             } else {
                 NfceTagService::pagamentos($nfe, $notafiscal->pagamentos);
             }
-
         } else {
             $std = new \stdClass();
             $std->indPag = '0';
@@ -126,11 +125,8 @@ class NfceService
             $std->vPag = $notafiscal->nota->vNF;
             $nfe->tagdetPag($std);
         }
-
-
         NfceTagService::infRespTec($nfe, $notafiscal->nota);
         //  NfceTagService::intermed($nfe, $notafiscal->nota);
-
 
         if (($notafiscal->nota->infAdFisco) || ($notafiscal->nota->infCpl))
             NfceTagService::infAdic($nfe, $notafiscal->nota);
@@ -148,7 +144,7 @@ class NfceService
                 $xml = $nfe->getXML();
                 $chave = $nfe->getChave();
 
-                $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/";
+                /*$path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/";
                 $nome_arquivo = $chave . "-nfce.xml";
 
                 if (!file_exists($path)) {
@@ -156,7 +152,11 @@ class NfceService
                 }
 
                 file_put_contents($path . $nome_arquivo, $xml);
-                chmod($path, 07777);
+                chmod($path, 07777);*/
+
+                $pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/temporarias/".$chave . "-nfce.xml";
+                $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($xml));
+                Storage::disk('arquivos')->setVisibility($pathPut, 'public');
 
                 Nfce::where("id", $notafiscal->nota->id)->update(["chave" => $chave]);
                 $tem = NfceXml::where("nfce_id", $notafiscal->nota->id)->first();
@@ -198,7 +198,6 @@ class NfceService
         try {
             $response = self::$tools->signNFe($xml);
 
-            /*
             $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/";
             $nome_arquivo = $chave . "-nfce.xml";
 
@@ -207,11 +206,11 @@ class NfceService
             }
 
             file_put_contents($path . $nome_arquivo, $response);
-            chmod($path, 07777);*/
+            chmod($path, 07777);
 
-            $pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/".$chave . "-nfce.xml";
+            /*$pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/assinadas/".$chave . "-nfce.xml";
             $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($response));
-            Storage::disk('arquivos')->setVisibility($pathPut, 'public');
+            Storage::disk('arquivos')->setVisibility($pathPut, 'public');*/
 
             Nfce::where("id", $notafiscal->nota->id)->update(["status_id" => config('constantes.status.ERRO_AO_GERAR_XML')]);
             $retorno->tem_erro = false;
@@ -249,7 +248,7 @@ class NfceService
             sleep(5);
             try {
                 $xml_autorizado = Complements::toAuthorize($xml, $xmlResp);
-               /* $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/";
+                $path = "storage/" . self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/";
                 $nome_arquivo = $chave . "-nfce.xml";
                 $protocolo = $std->protNFe->infProt->nProt;
 
@@ -258,12 +257,12 @@ class NfceService
                 }
 
                 file_put_contents($path . $nome_arquivo, $xml_autorizado);
-                chmod($path, 07777);*/
+                chmod($path, 07777);
 
-                $pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
+                /*$pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
                 $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($xml_autorizado));
                 Storage::disk('arquivos')->setVisibility($pathPut, 'public');
-                $protocolo = $std->protNFe->infProt->nProt;
+                $protocolo = $std->protNFe->infProt->nProt;*/
 
                 Nfce::where("id", $notafiscal->nota->id)->update(["protocolo" => $protocolo, "status_id" => config('constantes.status.AUTORIZADO')]);
 
@@ -322,13 +321,13 @@ class NfceService
                 if ($std->protNFe->infProt->cStat == '100') { //Autorizado o uso da NF-e
                     $xml_autorizado = Complements::toAuthorize($xml, $xmlResp);
 
-                    /*$path = "storage/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
+                    $path = "storage/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
                     file_put_contents($path, $xml_autorizado);
-                    chmod($path, 07777);*/
+                    chmod($path, 07777);
 
-                    $pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
+                    /*$pathIMG = self::$pastaEmpresa . "/xml/nfce/" . self::$pastaAmbiente . "/autorizadas/".$chave . "-nfce.xml";
                     $pathPut = Storage::disk('arquivos')->put($pathIMG, file_get_contents($xml_autorizado));
-                    Storage::disk('arquivos')->setVisibility($pathPut, 'public');
+                    Storage::disk('arquivos')->setVisibility($pathPut, 'public');*/
 
                     $retorno->tem_erro = false;
                     $retorno->titulo = "XML autorizado com sucesso";
