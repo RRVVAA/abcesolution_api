@@ -371,16 +371,15 @@ class NfceService
         $nfce = Nfce::where("chave", $chave)->first();
 
         $pastaAmbiente = ($nfce->tpAmb == "1") ? "producao" : "homologacao";
-        //$path01 = "storage/" . $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
-        $path01 = $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
-        dd($path01);
-        $pathGet01 = Storage::disk('arquivos')->get($path01);
-        $req = file_get_contents($pathGet01);
+        $path01 = "storage/" . $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
+        //$path01 = $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
+        //$pathGet01 = Storage::disk('arquivos')->get($path01);
+        $req = file_get_contents($path01);
 
-        //$path02 = "storage/" . $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml";
-        $path02 = $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
-        $pathGet02 = Storage::disk('arquivos')->get($path02);
-        $res = file_get_contents($pathGet02);
+        $path02 = "storage/" . $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml";
+        //$path02 = $nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
+        //$pathGet02 = Storage::disk('arquivos')->get($path02);
+        $res = file_get_contents($path02);
 
         $retorno = new \stdClass();
         try {
