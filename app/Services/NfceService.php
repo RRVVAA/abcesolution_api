@@ -359,7 +359,7 @@ class NfceService
 
         $res = '';
         $path02 = "storage/".$nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml";
-        if (!file_exists($path02)) {
+        if (file_exists($path02)) {
             $res = file_get_contents($path02);
         }
 
