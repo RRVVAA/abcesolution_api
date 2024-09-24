@@ -427,6 +427,7 @@ class NfeService
     public static function imprimirCancelado($id_nfe)
     {
         $nfe = Nfe::where("id", $id_nfe)->first();
+        dd($nfe);
         $pastaAmbiente = ($nfe->tpAmb == "1") ? "producao" : "homologacao";
         $path = "storage/" . $nfe->empresa->pasta . "/xml/nfe/" . $pastaAmbiente . "/cancelado/" . $nfe->chave . "-nfe.xml";
         $xml = file_get_contents($path);

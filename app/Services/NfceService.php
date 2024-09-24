@@ -438,7 +438,7 @@ class NfceService
                 $cStat = $std->retEvento->infEvento->cStat;
                 if ($cStat == '101' || $cStat == '135' || $cStat == '155') {
                     $xml_cancelado = Complements::toAuthorize(self::$tools->lastRequest, $response);
-                    $path = "storage/xml/nfe/homologacao/canceladas/" . $chave . "-nfe.xml";
+                    $path = "storage/xml/nfe/producao/canceladas/" . $chave . "-nfe.xml";
                     file_put_contents($path, $xml_cancelado);
                     chmod($path, 07777);
 
