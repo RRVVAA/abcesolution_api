@@ -357,15 +357,16 @@ class NfceService
         $path01 = "storage/".$nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
         $req = file_get_contents($path01);
 
-        $res = '';
         $path02 = "storage/".$nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml";
         if (file_exists($path02)) {
             $res = file_get_contents($path02);
+            $xml = Complements::cancelRegister($req, $res);
+        } else {
+            $xml = $req;
         }
 
         $retorno = new \stdClass();
         try {
-            $xml = Complements::cancelRegister($req, $res);
             $danfce = new Danfce($xml);
             $pdf = $danfce->render();
 
