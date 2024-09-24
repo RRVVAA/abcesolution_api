@@ -105,7 +105,7 @@ class NfceController extends Controller{
     public function baixarPdf($chave){
         $danfce = NfceService::danfce($chave);
         if(!$danfce->tem_erro){
-            return response($danfce->pdf)->header("Content-type", "application/pdf");
+            return response($danfce)->header("Content-type", "application/pdf");
         }else{
             return response()->json("erro",401);
         }
