@@ -360,6 +360,11 @@ class NfceService
         $path02 = storage_path($nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml");
         $res = file_get_contents($path02);
 
+        echo '<pre>';
+        print_r($req);
+        print_r($res);
+        exit;
+
         $retorno = new \stdClass();
         try {
             $xml = Complements::cancelRegister($req, $res);
