@@ -357,13 +357,8 @@ class NfceService
         $path01 = "storage/".$nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/autorizadas/" . $chave . "-nfce.xml";
         $req = file_get_contents($path01);
 
-        $path02 = storage_path($nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml");
+        $path02 = "storage/".$nfce->empresa->pasta . "/xml/nfce/" . $pastaAmbiente . "/cancelado/" . $chave . "-nfce.xml";
         $res = file_get_contents($path02);
-
-        echo '<pre>';
-        print_r($req);
-        print_r($res);
-        exit;
 
         $retorno = new \stdClass();
         try {
