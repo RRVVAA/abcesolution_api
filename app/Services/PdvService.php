@@ -56,11 +56,11 @@ class PdvService
         
         //Pesquisa pelo Còdigo de Barra
         if(!$produto){
-            $produto               = Produto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
+            $produto = Produto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
         //Pesquisa pelo id
         if(!$produto){
-            $produto           = Produto::where(["id" => $dados->q, "empresa_id"=>$dados->empresa_id])->first();
+            $produto = Produto::where(["id" => $dados->q, "empresa_id"=>$dados->empresa_id])->first();
         }
         
         //Se não achou procura na tabela de grade
@@ -163,13 +163,12 @@ class PdvService
         
         $item->subtotal_liquido    =  ($item->valor - $item->desconto_por_unidade )  * $item->qtde;
         $item->total_desconto_item  =  $item->desconto_por_unidade  * $item->qtde;
-        $item = PdvItemVenda::Create(objToArray($item));
-        
+        if (Produto::find($dados->q)) {
+            $item = PdvItemVenda::Create(objToArray($item));
+        }
         $retorno->eh_grade = false;        
         $retorno->venda_id = $item->venda_id;
-        
         return $retorno;
-        
     }
         
        
