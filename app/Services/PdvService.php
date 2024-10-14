@@ -84,7 +84,6 @@ class PdvService
 
         //Se mesmo assim não achou então retorna null
         if (!$produto) {
-            return 'nada';
             $retorno->eh_grade = false;
             $retorno->venda_id = null;
             return $retorno;
