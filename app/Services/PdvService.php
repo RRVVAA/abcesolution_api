@@ -68,7 +68,9 @@ class PdvService
 
         //Se não achou procura na tabela de grade
         if (!$produto) {
-            $grade = GradeProduto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
+            $grade = GradeProduto::where("codigo_barra", $dados->q)
+                ->where("empresa_id", $dados->empresa_id)
+                ->first();
             if ($grade) {
                 $grade_id = $grade->id;
                 $produto = $grade->produto;

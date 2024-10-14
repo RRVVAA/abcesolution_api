@@ -43,6 +43,7 @@ class PdvApiController extends Controller
         $resultado  = PdvVendaService::excluirCupom($dados);
         return response()->json(["data" =>$resultado]);
     }
+
     public function inserirItem(Request $request){
         $dados = (object) $request->all();
         $resultado = PdvService::inserirItem($dados);        
