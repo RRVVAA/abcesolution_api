@@ -63,7 +63,7 @@ class PdvService
         }
         //Pesquisa pelo id
         if (!$produto) {
-            $produto = Produto::where(["id" => $dados->q, "empresa_id" => $dados->empresa_id])->first();
+            $produto = Produto::where("id", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
 
         //Se não achou procura na tabela de grade
