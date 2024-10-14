@@ -79,7 +79,7 @@ class PdvService
 
         //Pesquisa pelo sku
         if (!$produto) {
-            $produto = Produto::where("sku", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
+            $produto = Produto::where("skuu", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
 
         //Se mesmo assim não achou então retorna null
