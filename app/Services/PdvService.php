@@ -59,15 +59,18 @@ class PdvService
 
         //Pesquisa pelo Còdigo de Barra
         if (!$produto) {
+            return 'codigo_barra';
             $produto = Produto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
         //Pesquisa pelo id
         if (!$produto) {
+            return 'id';
             $produto = Produto::where(["id" => $dados->q, "empresa_id" => $dados->empresa_id])->first();
         }
 
         //Se não achou procura na tabela de grade
         if (!$produto) {
+            return 'codigo_barra/grade';
             $grade = GradeProduto::where("codigo_barra", $dados->q)
                 ->where("empresa_id", $dados->empresa_id)
                 ->first();
@@ -79,11 +82,13 @@ class PdvService
 
         //Pesquisa pelo sku
         if (!$produto) {
+            return 'sku';
             $produto = Produto::where("sku", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
 
         //Se mesmo assim não achou então retorna null
         if (!$produto) {
+            return 'nada';
             $retorno->eh_grade = false;
             $retorno->venda_id = null;
             return $retorno;
@@ -91,6 +96,7 @@ class PdvService
 
         //Verifica se o produto é grade - retorna para a montagem da grade
         if ($produto->usa_grade == "S" && $grade_id == null) {
+            return 'encontrou';
             if ($produto->estoque->quantidade != $produto->estoque->qtde_grade) {
                 $retorno->eh_grade = true;
                 $retorno->venda_id = null;
