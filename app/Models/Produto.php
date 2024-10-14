@@ -12,6 +12,7 @@ class Produto extends Model
         'empresa_id',
         'nome',
         'gtin',
+        'sku',
         'imagem',
         'uuid',
         'tributacao_id',
