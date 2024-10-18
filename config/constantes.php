@@ -146,6 +146,7 @@ return [
         'VENDA'             => '1',
         'COMPRA'            => '2',
         'PDV'               => '3',
+        'COMANDA'           => '3',
         'LOJA'              => '4',
         'DEVOLUCAO_VENDA'   => '5',
         'DEVOLUCAO_COMPRA'  => '6',

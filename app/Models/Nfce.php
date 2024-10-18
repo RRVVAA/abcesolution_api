@@ -11,6 +11,7 @@ class Nfce extends Model
     protected $fillable =[
         'empresa_id',
         'venda_id',
+        'comanda_id',
         'natureza_operacao_id',
         'pdvvenda_id',
         'status_id',
