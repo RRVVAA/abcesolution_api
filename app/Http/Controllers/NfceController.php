@@ -73,7 +73,8 @@ class NfceController extends Controller
 
     public function consultar(Request $request)
     {
-        $consulta = NfceService::consultar($request->chave);
+        $nfce = Nfce::find($request->id);
+        $consulta = NfceService::consultar($nfce);
 
         if (!$consulta->tem_erro) {
             return response()->json($consulta->resultado, 200);

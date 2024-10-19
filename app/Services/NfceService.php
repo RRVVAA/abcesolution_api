@@ -384,11 +384,12 @@ class NfceService
         return $retorno;
     }
 
-    public static function consultar($chave)
+    public static function consultar($nfce)
     {
+        self::config($nfce);
         $retorno = new \stdClass();
         try {
-            $response = self::$tools->sefazConsultaChave($chave);
+            $response = self::$tools->sefazConsultaChave($nfce->chave);
             $stdCl = new Standardize($response);
             //nesse caso $std irá conter uma representação em stdClass do XML
             $std = $stdCl->toStd();
