@@ -123,8 +123,6 @@ Route::post('/pdv/abrirCaixa',[PdvApiController::class, 'abrirCaixa']);
 Route::post('/pdv/fecharCaixa',[PdvApiController::class, 'fecharCaixa']);
 Route::get('/pdv/verificarRequisitos/{id}',[PdvApiController::class, 'verificarRequisitos'])->name('pdv.verificarRequisitos');
 
-
-
 //PDV CAIXA
 Route::get('/pdvcaixa/listaCaixaAbertoPorUsuario/{uuid}',[PdvCaixaApiController::class, 'listaCaixaAbertoPorUsuario']);
 Route::get('/pdvcaixa/verificaSeTemCaixaAbertoPorUsuario/{uuid}',[PdvCaixaApiController::class, 'verificaSeTemCaixaAbertoPorUsuario']);
@@ -203,6 +201,7 @@ Route::get('/pdvvenda/getVendaPorId/{id}',[PdvVendaApiController::class, 'getVen
 
 //NFCE
 
+Route::get('/nfce/transmitirNfce/{id}',[PdvController::class, 'transmitirNfce'])->name('nfce.transmitirNfce');
 Route::get('/nfce/transmitirPelaNfce/{id}',[PdvController::class, 'transmitirPelaNfce'])->name('nfce.transmitirPelaNfce');
 Route::get('/nfce/imprimirDanfcePelaVenda/{id}',[NfceController::class, 'imprimirDanfcePelaVenda']);
 Route::get('/nfce/gerarNfcePelaVenda/{id}',[NfceController::class, 'gerarNfcePelaVenda']);

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comanda;
-use App\Models\ComandaPedido;
 use App\Models\NaturezaOperacao;
 use App\Models\Nfce;
 use App\Models\PdvVenda;
