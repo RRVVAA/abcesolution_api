@@ -66,7 +66,6 @@ class NfceController extends Controller
                 return response()->json($xml_assinado, 201);
             }
         } else {
-
             return response()->json($xml, 201);
         }
     }
@@ -74,7 +73,9 @@ class NfceController extends Controller
     public function consultar(Request $request)
     {
         $nfce = Nfce::find($request->id);
-        $consulta = NfceService::consultar($nfce);
+        $xmlResp = self::$tools->sefazConsultaRecibo($request->recibo, $nfce->nota->tpAmb);
+
+        dd($xmlResp);
 
         if (!$consulta->tem_erro) {
             return response()->json($consulta->resultado, 200);
@@ -82,7 +83,6 @@ class NfceController extends Controller
             return response()->json('Consulta não encontrada', 404);
         }
     }
-
 
     public function imprimirDanfcePelaVenda($id)
     {
