@@ -17,8 +17,6 @@ class NotaFiscalService
             echo '55'; exit;
         } elseif ($modelo == 65) {
             $nfe = Nfce::where("id", $id_nfe)->first();
-            echo '65'; exit;
-            dd($nfe);
         }
 
         $nota = new \stdClass();
