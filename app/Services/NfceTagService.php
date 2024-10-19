@@ -38,14 +38,12 @@ class NfceTagService{
         $std->verProc   = $nota->verProc;
         $std->dhCont    = null;
         $std->xJust     = null;
-        
         //Emitente
-        
-        
+
         $nfe->tagide($std);
     }
     
-    public static function emitente($nfe,$emitente){
+    public static function emitente($nfe, $emitente){
         $std = new \stdClass();
         $std->xNome	= tiraAcento(limita_caracteres($emitente->xNome,45))	;
         $std->xFant	= tiraAcento($emitente->xFant)	;
