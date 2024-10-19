@@ -384,6 +384,29 @@ class NfceService
         return $retorno;
     }
 
+    public static function consultar($chave)
+    {
+        $retorno = new \stdClass();
+        try {
+            $response = self::$tools->sefazConsultaChave($chave);
+            $stdCl = new Standardize($response);
+            //nesse caso $std irá conter uma representação em stdClass do XML
+            $std = $stdCl->toStd();
+            $retorno->tem_erro = false;
+            $retorno->titulo = "Consulta retornada com sucesso";
+            $retorno->erro = "";
+            $retorno->resultado = $std;
+
+
+        } catch (\Exception $e) {
+            $retorno->tem_erro = true;
+            $retorno->titulo = "Erro ao consultar a nota na Sefaz";
+            $retorno->erro = $e->getMessage();
+        }
+
+        return $retorno;
+    }
+
     public static function consultarPorChave($config)
     {
         self::config2($config);

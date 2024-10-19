@@ -276,7 +276,6 @@ class NfeService
         return $retorno;
     }
 
-
     public static function consultarProcessamento($notafiscal)
     {
         self::config($notafiscal);
@@ -464,7 +463,6 @@ class NfeService
 
         return $retorno;
     }
-
 
     public static function danfe($chave)
     {

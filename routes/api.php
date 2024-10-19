@@ -203,7 +203,7 @@ Route::get('/pdvvenda/getVendaPorId/{id}',[PdvVendaApiController::class, 'getVen
 
 Route::get('/nfce/transmitirNfce/{id}',[NfceController::class, 'transmitirNfce'])->name('nfce.transmitirNfce');
 Route::get('/nfce/transmitirPelaComanda/{id}',[NfceController::class, 'transmitirPelaComanda'])->name('nfce.transmitirPelaComanda');
-Route::post('/nfce/consultar',[NfceController::class, 'consultar'])->name('nfce.consultar');
+Route::get('/nfce/consultar/{chave}',[NfceController::class, 'consultar'])->name('nfce.consultar');
 
 Route::get('/nfce/transmitirPelaNfce/{id}',[PdvController::class, 'transmitirPelaNfce'])->name('nfce.transmitirPelaNfce');
 Route::get('/nfce/imprimirDanfcePelaVenda/{id}',[NfceController::class, 'imprimirDanfcePelaVenda']);
