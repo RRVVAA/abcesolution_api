@@ -18,6 +18,8 @@ class NotaFiscalService
             $nfe = Nfce::where("id", $id_nfe)->first();
         }
 
+        dd($nfe);
+
         $nota = new \stdClass();
         $nota->id = $nfe->id;
         $nota->venda_id = $nfe->venda_id;
