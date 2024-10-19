@@ -26,7 +26,7 @@ class NfceController extends Controller
         }
     }
 
-    public function transmitirPelaComadna($comanda_id)
+    public function transmitirPelaComanda($comanda_id)
     {
         $nfce = Nfce::where("comanda_id", $comanda_id)->first();
 
