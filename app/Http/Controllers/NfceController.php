@@ -16,18 +16,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class NfceController extends Controller
 {
-    public function geraVendaPdvPelaComanda($id)
-    {
-        $comandaPedido = ComandaPedido::find($id);
-        $nfce = Nfce::where("comanda_id", $id)->first();
-        $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.COMANDA'))->first();
-        $tributacao = Tributacao::where(["natureza_operacao_id" => $natureza_operacao->id, "padrao" => "S"])->first();
-
-        if (!$nfce) {
-            Comanda::inserirNfcePelaComanda($comandaPedido, $natureza_operacao, $tributacao);
-        }
-    }
-
     public function gerarNfcePelaVenda($id)
     {
         $pdvvenda = PdvVenda::find($id);
@@ -38,6 +26,17 @@ class NfceController extends Controller
         if (!$nfce) {
             PdvVenda::inserirNfcePelaVenda($pdvvenda, $natureza_operacao, $tributacao);
         }
+    }
+
+    public function transmitirPelaComadna($comanda_id)
+    {
+        $nfce = Nfce::where("comanda_id", $comanda_id)->first();
+
+        if (!$nfce) {
+            echo json_encode("-1");
+            exit;
+        }
+        return $this->transmitirNfce($nfce);
     }
 
     public function transmitirPelaVenda($id_venda)

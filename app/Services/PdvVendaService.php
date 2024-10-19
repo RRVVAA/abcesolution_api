@@ -79,7 +79,6 @@ class PdvVendaService
         }
     }
 
-
     public static function aplicarCupom($dados)
     {
         $retorno = new \stdClass();
@@ -159,7 +158,6 @@ class PdvVendaService
         return $pedido->id;
     }
 
-
     public function iniciarPdvVenda(string $uuid)
     {
         $usuario = $this->usuarioRepositorio->getUsuarioPorUuid($uuid);
@@ -200,7 +198,6 @@ class PdvVendaService
         }
     }
 
-
     public function getVendaAbertaPorUsuario(string $uuid, $caixa_id)
     {
         $usuario = $this->usuarioRepositorio->getUsuarioPorUuid($uuid);
@@ -210,7 +207,6 @@ class PdvVendaService
         }
         return $this->pdvVendaRepositorio->novaVenda($usuario->id, $caixa_id, $usuario->empresa_id);
     }
-
 
     public static function getVendaPorId($venda_id)
     {
