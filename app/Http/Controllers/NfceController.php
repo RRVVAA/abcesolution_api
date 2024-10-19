@@ -73,7 +73,7 @@ class NfceController extends Controller
     public function consultar(Request $request)
     {
         $nfce = Nfce::find($request->id);
-        $notafiscal = NotaFiscalService::prepararNfce($nfce);
+        $notafiscal = NotaFiscalService::prepararNfe($nfce);
         $consulta = NfceService::consultar($notafiscal);
 
         if (!$consulta->tem_erro) {
