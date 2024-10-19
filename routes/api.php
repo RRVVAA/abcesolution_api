@@ -203,7 +203,7 @@ Route::get('/pdvvenda/getVendaPorId/{id}',[PdvVendaApiController::class, 'getVen
 
 Route::get('/nfce/transmitirNfce/{id}',[NfceController::class, 'transmitirNfce'])->name('nfce.transmitirNfce');
 Route::get('/nfce/transmitirPelaComanda/{id}',[NfceController::class, 'transmitirPelaComanda'])->name('nfce.transmitirPelaComanda');
-Route::get('/nfce/consultar/{chave}',[NfceController::class, 'consultar'])->name('nfce.consultar');
+Route::get('/nfce/consultar/{id}',[NfceController::class, 'consultar'])->name('nfce.consultar');
 
 Route::get('/nfce/transmitirPelaNfce/{id}',[PdvController::class, 'transmitirPelaNfce'])->name('nfce.transmitirPelaNfce');
 Route::get('/nfce/imprimirDanfcePelaVenda/{id}',[NfceController::class, 'imprimirDanfcePelaVenda']);
@@ -213,7 +213,7 @@ Route::post('/nfce/transmitir',[NfceController::class, 'transmitir']);
 Route::get('/nfce/xml/{chave}',[NfceController::class, 'xml']);
 Route::get('/nfce/baixarXml/{chave}',[NfceController::class, 'baixarXml']);
 Route::get('/nfce/baixarPdf/{chave}',[NfceController::class, 'baixarPdf']);
-Route::get('/nfce/danfce/{id}',[NfceController::class, 'danfce']);
+Route::get('/nfce/danfce/{chave}',[NfceController::class, 'danfce']);
 Route::post('/nfce/email',[NfceController::class, 'email']);
 Route::post('/nfce/cancelarNfce',[NfceController::class, 'cancelarNfce']);
 Route::get('/nfce/imprimircancelado/{id}',[NfceController::class, 'imprimircancelado']);
