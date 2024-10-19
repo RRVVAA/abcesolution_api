@@ -14,7 +14,6 @@ class NotaFiscalService
     {
         if ($modelo == 55) {
             $nfe = Nfe::where("id", $id_nfe)->first();
-            echo '55'; exit;
         } elseif ($modelo == 65) {
             $nfe = Nfce::where("id", $id_nfe)->first();
         }
