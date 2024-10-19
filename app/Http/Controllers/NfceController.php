@@ -71,6 +71,18 @@ class NfceController extends Controller
         }
     }
 
+    public function consultar(Request $request)
+    {
+        $config = (object)$request->all();
+        $consulta = NfceService::consultarPorChave($config);
+
+        if (!$consulta->tem_erro) {
+            return response()->json($consulta->resultado, 200);
+        } else {
+            return response()->json('Consulta não encontrada', 404);
+        }
+    }
+
 
     public function imprimirDanfcePelaVenda($id)
     {
@@ -92,7 +104,6 @@ class NfceController extends Controller
             return response()->json($retorno);
         }
     }
-
 
     public function danfce($chave)
     {
