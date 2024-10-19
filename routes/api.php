@@ -213,7 +213,7 @@ Route::post('/nfce/transmitir',[NfceController::class, 'transmitir']);
 Route::get('/nfce/xml/{chave}',[NfceController::class, 'xml']);
 Route::get('/nfce/baixarXml/{chave}',[NfceController::class, 'baixarXml']);
 Route::get('/nfce/baixarPdf/{chave}',[NfceController::class, 'baixarPdf']);
-Route::get('/nfce/danfce/{chave}',[NfceController::class, 'danfce']);
+Route::get('/nfce/danfce/{id}',[NfceController::class, 'danfce']);
 Route::post('/nfce/email',[NfceController::class, 'email']);
 Route::post('/nfce/cancelarNfce',[NfceController::class, 'cancelarNfce']);
 Route::get('/nfce/imprimircancelado/{id}',[NfceController::class, 'imprimircancelado']);
