@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\TributacaoProduto;
+
 class NfceTagService
 {
     public static function infNfe($nfe)
@@ -109,6 +111,9 @@ class NfceTagService
 
     public static function dadosProduto($cont, $nfe, $item)
     {
+        $tributacaoProduto = TributacaoProduto::with('tributacao')
+            ->where('produto_id', $item->produto_id)
+            ->first();
 
         $std = new \stdClass();
         $std->item = $cont; //item da NFe
@@ -118,7 +123,12 @@ class NfceTagService
         $std->NCM = $item->NCM;
         $std->cBenef = $item->cBenef; //incluido no layout 4.00
         $std->EXTIPI = $item->EXTIPI;
+
         $std->CFOP = $item->CFOP;
+        if (!empty($tributacaoProduto)) {
+            $std->CFOP = $tributacaoProduto->tributacao->cfop;
+        }
+
         $std->uCom = $item->uCom;
         $std->qCom = $item->qCom;
         $std->vUnCom = formataNumero($item->vUnCom);
@@ -166,6 +176,9 @@ class NfceTagService
 
     public static function icms($cont, $nfe, $item)
     {
+        $tributacaoProduto = TributacaoProduto::with('tributacao')
+            ->where('produto_id', $item->produto_id)
+            ->first();
 
         $std = new \stdClass();
         $std->item = $cont; //item da NFe
@@ -173,6 +186,11 @@ class NfceTagService
         if (isset($item->CST)) {
             $std->CST = $item->CST;
             $cst = $std->CST;
+        }
+
+        if (!empty($tributacaoProduto)) {
+            $std->CST = $tributacaoProduto->tributacao->cstICMS;
+            $cst = $tributacaoProduto->tributacao->cstICMS;
         }
         if (isset($item->CSOSN)) {
             $std->CSOSN = $item->CSOSN;
