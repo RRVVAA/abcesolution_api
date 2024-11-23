@@ -111,7 +111,7 @@ class NfceTagService
 
     public static function dadosProduto($cont, $nfe, $item)
     {
-        dd($nfe);
+        dd($item);
         $tributacaoProduto = TributacaoProduto::with('tributacao')
             ->where('produto_id', $item->produto_id)
             ->first();
