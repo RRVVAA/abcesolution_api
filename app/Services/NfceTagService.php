@@ -118,7 +118,7 @@ class NfceTagService
         $std->NCM = $item->NCM;
         $std->cBenef = $item->cBenef; //incluido no layout 4.00
         $std->EXTIPI = $item->EXTIPI;
-        $std->CFOP = $nfe->CFOP;
+        $std->CFOP = $item->CFOP;
         $std->uCom = $item->uCom;
         $std->qCom = $item->qCom;
         $std->vUnCom = formataNumero($item->vUnCom);
