@@ -78,6 +78,7 @@ class NfceService
 
         $cont = 1;
         foreach ($notafiscal->itens as $item) {
+            dd($item);
             NfceTagService::dadosProduto($cont, $nfe, (object)$item["produto"]);
             NfceTagService::imposto($cont, $nfe, (object)$item["imposto"]);
             NfceTagService::icms($cont, $nfe, (object)$item["icms"], $item['cProd']);
