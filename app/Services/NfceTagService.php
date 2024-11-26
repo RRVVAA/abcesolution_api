@@ -176,7 +176,6 @@ class NfceTagService
 
     public static function icms($cont, $nfe, $item)
     {
-        print_r($item);exit;
         $tributacaoProduto = TributacaoProduto::with('tributacao')
             ->where('produto_id', $item->cProd)
             ->first();

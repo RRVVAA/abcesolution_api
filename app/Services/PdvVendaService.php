@@ -450,17 +450,27 @@ class PdvVendaService
     public function inserirItem($dados)
     {
         $produto = null;
+
+        if (strpos($dados->q, '*')) {
+            $q = explode('*', $dados->q);
+            $codigo = $q[1];
+            $quantidade = $q[0];
+        } else {
+            $codigo = $dados->q;
+            $quantidade = 1;
+        }
+
         if ($dados->barra_ou_id == "id") {
-            $produto = Produto::where(["id" => $dados->q, "empresa_id" => $dados->empresa_id])->first();
+            $produto = Produto::where(["id" => $codigo, "empresa_id" => $dados->empresa_id])->first();
         } else if ($dados->barra_ou_id == "barra") {
-            $produto = Produto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
+            $produto = Produto::where("codigo_barra", $codigo)->where("empresa_id", $dados->empresa_id)->first();
         }
 
         if ($produto) {
             $item = new \stdClass();
             $item->venda_id = $dados->venda_id;
             $item->produto_id = $produto->id;
-            $item->qtde = $dados->qtde;
+            $item->qtde = $quantidade;
             $item->valor = $produto->valor_venda;
             $item->subtotal = $item->valor * $item->qtde;
             $item->desconto_por_valor = $dados->desconto_por_valor;
@@ -481,8 +491,6 @@ class PdvVendaService
         } else {
             return null;
         }
-
-
     }
 
     public function inserirPagamento($dados)
