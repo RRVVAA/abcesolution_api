@@ -27,8 +27,6 @@ class PdvController extends Controller{
     private function transmitirNfce($nfce){
         $notafiscal = NotaFiscalService::prepararNfce($nfce);
 
-        dd($notafiscal);
-        
         $xml =  NfceService::gerarNfce($notafiscal);
         if(!$xml->tem_erro){
             $xml_assinado = NfceService::assinarXml($xml->xml, $xml->chave, $notafiscal);
