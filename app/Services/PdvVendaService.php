@@ -481,8 +481,6 @@ class PdvVendaService
         } else {
             return null;
         }
-
-
     }
 
     public function inserirPagamento($dados)
