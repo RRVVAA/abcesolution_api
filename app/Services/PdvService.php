@@ -58,7 +58,7 @@ class PdvService
         }
 
         //Pesquisa pelo Còdigo de Barra
-        if (!$produto) {
+        if (strlen($dados->q) > 10) {
             $produto = Produto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
         //Pesquisa pelo id

@@ -108,7 +108,6 @@ Route::get('/lojapedido/finalizar/{id}', [LojaPedidoApiController::class, 'final
 //FRENTE
 Route::post('/frente/home',[FrenteApiController::class, 'home']);
 
-
 //Pdv
 Route::post('/pdv/aplicarCupom',[PdvApiController::class, 'aplicarCupom']);
 Route::post('/pdv/excluirCupom',[PdvApiController::class, 'excluirCupom']);
