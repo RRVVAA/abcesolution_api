@@ -174,11 +174,10 @@ class NfceTagService
         $nfe->tagimposto($std);
     }
 
-    public static function icms($cont, $nfe, $item)
+    public static function icms($cont, $nfe, $item, $cProd)
     {
-        dd($item);
         $tributacaoProduto = TributacaoProduto::with('tributacao')
-            ->where('produto_id', $item->cProd)
+            ->where('produto_id', $cProd)
             ->first();
 
         $std = new \stdClass();

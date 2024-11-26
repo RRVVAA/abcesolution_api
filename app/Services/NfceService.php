@@ -80,7 +80,7 @@ class NfceService
         foreach ($notafiscal->itens as $item) {
             NfceTagService::dadosProduto($cont, $nfe, (object)$item["produto"]);
             NfceTagService::imposto($cont, $nfe, (object)$item["imposto"]);
-            NfceTagService::icms($cont, $nfe, (object)$item["icms"]);
+            NfceTagService::icms($cont, $nfe, (object)$item["icms"], $item['cProd']);
 
             if (isset($item->ipi->vIPI))
                 NfceTagService::ipi($cont, $nfe, (object)$item["ipi"]);
