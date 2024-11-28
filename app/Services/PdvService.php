@@ -103,9 +103,6 @@ class PdvService
             }
         }
 
-        echo '-1-';
-        print_r($produto);exit;
-
         //Verificar se a venda existe
         if (!$venda_id) {
             //Veririfica se existe cupom
@@ -127,6 +124,9 @@ class PdvService
         } else {
             $venda = PdvVenda::find($venda_id);
         }
+
+        echo '-2-';
+        print_r($produto);exit;
 
         $item = new \stdClass();
         $item->venda_id = $venda_id;
