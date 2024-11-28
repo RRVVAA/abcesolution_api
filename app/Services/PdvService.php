@@ -125,9 +125,6 @@ class PdvService
             $venda = PdvVenda::find($venda_id);
         }
 
-        echo '-2-';
-        print_r($produto);exit;
-
         $item = new \stdClass();
         $item->venda_id = $venda_id;
         $item->produto_id = $produto->id;
@@ -146,7 +143,6 @@ class PdvService
             $item->desconto_por_unidade = $item->desconto_percentual * $item->valor * 0.01;
         }
 
-
         //Aplicar o cupom fiscal
         if ($venda->cupom_desconto_id) {
             $cupom = CupomDesconto::find($venda->cupom_desconto_id);
@@ -164,6 +160,9 @@ class PdvService
                 $item->cupom_desconto_id = $cupom->id;
             }
         }
+
+        echo '-3-';
+        print_r($produto);exit;
 
         $item->subtotal_liquido = ($item->valor - $item->desconto_por_unidade) * $item->qtde;
         $item->total_desconto_item = $item->desconto_por_unidade * $item->qtde;
