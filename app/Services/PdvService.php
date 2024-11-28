@@ -59,7 +59,7 @@ class PdvService
 
         //Pesquisa pelo Còdigo de Barra
         if (!$produto) {
-            $produto = Produto::where("codigo_barra", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
+            $produto = Produto::where("codigo_barraa", $dados->q)->where("empresa_id", $dados->empresa_id)->first();
         }
         //Pesquisa pelo id
         if (!$produto) {

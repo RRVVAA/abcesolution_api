@@ -53,7 +53,6 @@ class PdvApiController extends Controller
     {
         $dados = (object)$request->all();
         $resultado = PdvService::inserirItem($dados);
-        print_r($resultado);exit;
         $retorno = new \stdClass();
         if ($resultado->eh_grade) {
             if ($resultado->produto_id != null) {
