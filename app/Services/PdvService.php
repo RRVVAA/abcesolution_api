@@ -125,6 +125,8 @@ class PdvService
             $venda = PdvVenda::find($venda_id);
         }
 
+        print_r($venda);exit;
+
         $item = new \stdClass();
         $item->venda_id = $venda_id;
         $item->produto_id = $produto->id;
