@@ -161,7 +161,8 @@ class PdvService
             }
         }
 
-        echo '-3-';
+        echo '-4-';
+        print_r($retorno);
         print_r($produto);exit;
 
         $item->subtotal_liquido = ($item->valor - $item->desconto_por_unidade) * $item->qtde;
