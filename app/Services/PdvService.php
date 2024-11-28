@@ -161,10 +161,6 @@ class PdvService
             }
         }
 
-        echo '-4-';
-        print_r($retorno);
-        print_r($produto);exit;
-
         $item->subtotal_liquido = ($item->valor - $item->desconto_por_unidade) * $item->qtde;
         $item->total_desconto_item = $item->desconto_por_unidade * $item->qtde;
         if (Produto::find($dados->q)) {
