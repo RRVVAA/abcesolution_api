@@ -131,7 +131,7 @@ class NfceTagService
 
         $std->uCom = $item->uCom;
         $std->qCom = $item->qCom;
-        $std->vUnCom = formataNumero($item->vUnCom);
+        $std->vUnCom = formataNumero($item->vUnCom) * $item->qCom;
         $std->vProd = formataNumero($item->vProd);
         $std->cEANTrib = $item->cEANTrib;
         $std->uTrib = $item->uTrib;
