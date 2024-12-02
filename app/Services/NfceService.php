@@ -131,9 +131,8 @@ class NfceService
             NfceTagService::infAdic($nfe, $notafiscal->nota);
 
         $xml = self::gerarXml($nfe, $notafiscal);
-        print_r($xml); exit;
+        //print_r($xml); exit;
         return $xml;
-
     }
 
     public static function gerarXml($nfe, $notafiscal)
