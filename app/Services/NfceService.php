@@ -130,7 +130,9 @@ class NfceService
         if (($notafiscal->nota->infAdFisco) || ($notafiscal->nota->infCpl))
             NfceTagService::infAdic($nfe, $notafiscal->nota);
 
-        return self::gerarXml($nfe, $notafiscal);
+        $xml = self::gerarXml($nfe, $notafiscal);
+        print_r($xml); exit;
+        return $xml;
 
     }
 
