@@ -131,12 +131,12 @@ class NfceTagService
 
         $std->uCom = $item->uCom;
         $std->qCom = $item->qCom;
-        $std->vUnCom = formataNumero($item->vProd);
-        $std->vProd = formataNumero($item->vUnCom);
+        $std->vUnCom = formataNumero($item->vUnCom);
+        $std->vProd = formataNumero($item->vProd);
         $std->cEANTrib = $item->cEANTrib;
         $std->uTrib = $item->uTrib;
         $std->qTrib = $item->qTrib;
-        $std->vUnTrib = formataNumero($item->vProd);
+        $std->vUnTrib = formataNumero($item->vUnTrib);
         $std->vFrete = ($item->vOutro > 0) ? formataNumero($item->vFrete) : null;
         $std->vSeg = ($item->vSeg > 0) ? formataNumero($item->vSeg) : null;
         $std->vDesc = ($item->vDesc > 0) ? formataNumero($item->vDesc) : null;
