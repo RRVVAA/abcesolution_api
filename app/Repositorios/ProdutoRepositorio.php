@@ -20,7 +20,7 @@ class ProdutoRepositorio implements ProdutoRepositorioInterface
     }    
     
     public function pesquisaPorNome($nome, $empresa_id){
-       return $this->entidade->where("nome","like","%$nome%")->where("empresa_id", $empresa_id)->get();
+       return $this->entidade->where("nome","like","%$nome%")->where("empresa_id", $empresa_id)->whereNull('deleted_at')->get();
     }
     
     public function getProdutosPorEmpresaId($id_empresa){
