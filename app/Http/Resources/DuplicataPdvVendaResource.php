@@ -15,6 +15,7 @@ class DuplicataPdvVendaResource extends JsonResource
             "nDup"              => $this->nDup ,  
             "dVenc"             => $this->dVenc,
             "vDup"              => $this->vDup,
+            "troco"              => $this->troco,
         ];
     }
     
