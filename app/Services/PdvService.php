@@ -275,8 +275,6 @@ class PdvService
                 if ($restante > 0) {
                     PdvDuplicata::Create(objToArray($pag));
                 }
-
-
             }
         }
 

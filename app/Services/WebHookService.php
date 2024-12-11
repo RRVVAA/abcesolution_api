@@ -123,6 +123,7 @@ class  WebHookService
         $pag->nDup          = 1;
         $pag->dVenc         = hoje();
         $pag->vDup          = $dados->valor;
+        $pag->troco          = $dados->troco;
         $pag->transacao_id  = $dados->transacao_id;
         PdvDuplicata::Create(objToArray($pag));
 

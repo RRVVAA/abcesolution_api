@@ -514,7 +514,6 @@ class PdvVendaService
             if ($restante > 0) {
                 PdvDuplicata::Create(objToArray($pag));
             }
-
         }
 
         return $dados["venda_id"];

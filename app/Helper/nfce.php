@@ -130,6 +130,7 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao, $tributacao){
             $dup->nDup  = $ft->nDup;
             $dup->dVenc = $ft->dVenc;
             $dup->vDup  = $ft->vDup;
+            $dup->troco  = $ft->troco;
             $dup->tPag  = $ft->tPag;
             $dup->obs   = $ft->obs;
             NfceDuplicata::Create(objToArray($dup));

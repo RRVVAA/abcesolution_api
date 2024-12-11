@@ -12,6 +12,7 @@ class NfeDuplicata extends Model
         'nfe_id',
         'nDup',
         'dVenc',
-        'vDup'
+        'vDup',
+        'troco'
     ];
 }
