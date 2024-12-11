@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PdvDuplicata extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'venda_id',
         'transacao_id',
@@ -17,6 +18,7 @@ class PdvDuplicata extends Model
         'indPag',
         'dVenc',
         'vDup',
+        'troco',
         'obs'
     ];
     

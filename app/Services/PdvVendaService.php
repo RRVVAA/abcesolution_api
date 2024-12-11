@@ -497,6 +497,7 @@ class PdvVendaService
             $pag->caixa_id = $dados["caixa_id"];
             $pag->tPag = $dados["tPag"];
             $pag->nDup = $i + 1;
+            $pag->troco = $dados["troco"];
             $pag->dVenc = somarData(hoje(), $i * 30);
 
             if ($i == $qtde_parcela - 1) {
