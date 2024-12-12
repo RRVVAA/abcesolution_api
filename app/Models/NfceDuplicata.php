@@ -15,7 +15,6 @@ class NfceDuplicata extends Model
         'indPag',
         'dVenc',
         'vDup',
-        'troco',
         'obs'
     ];
 }

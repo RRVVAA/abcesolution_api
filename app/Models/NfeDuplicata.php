@@ -13,6 +13,5 @@ class NfeDuplicata extends Model
         'nDup',
         'dVenc',
         'vDup',
-        'troco'
     ];
 }
