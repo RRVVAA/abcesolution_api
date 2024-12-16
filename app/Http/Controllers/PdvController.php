@@ -20,12 +20,12 @@ class PdvController extends Controller{
             echo json_encode("-1");
             exit;
         }
-        print_r($nfce); exit;
         return $this->transmitirNfce($nfce);
     }
 
     private function transmitirNfce($nfce){
         $notafiscal = NotaFiscalService::prepararNfce($nfce);
+        print_r($notafiscal); exit;
 
         $xml =  NfceService::gerarNfce($notafiscal);
 
