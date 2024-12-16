@@ -521,7 +521,6 @@ class NotaFiscalService
         $emitente->xPais = $nfce->em_xPais;
         $emitente->fone = $nfce->em_fone;
 
-
         $itens = array();
         if (count($nfce->itens) > 0) {
             foreach ($nfce->itens as $item) {
