@@ -25,8 +25,6 @@ class PdvController extends Controller{
 
     private function transmitirNfce($nfce){
         $notafiscal = NotaFiscalService::prepararNfce($nfce);
-        print_r($nfce);
-        print_r($notafiscal); exit;
 
         $xml =  NfceService::gerarNfce($notafiscal);
 
