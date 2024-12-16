@@ -20,6 +20,7 @@ class PdvController extends Controller{
             echo json_encode("-1");
             exit;
         }
+        print_r($nfce); exit;
         return $this->transmitirNfce($nfce);
     }
 
