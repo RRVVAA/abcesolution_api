@@ -19,12 +19,12 @@ class PdvDuplicataObserver
             RecebimentoService::inserirPeloPdvDuplicata($receber, $duplicata->tPag);
        // }
        
-            if($duplicata->tPag==config("constantes.forma_pagto.CREDITO_LOJA")){
-                $cliente = $duplicata->venda->cliente;
-                $cliente->credito_utilizado += $duplicata->vDup;
-                $cliente->credito_disponivel -= $duplicata->vDup;
-                $cliente->save();
-            }
+        if($duplicata->tPag==config("constantes.forma_pagto.CREDITO_LOJA")){
+            $cliente = $duplicata->venda->cliente;
+            $cliente->credito_utilizado += $duplicata->vDup;
+            $cliente->credito_disponivel -= $duplicata->vDup;
+            $cliente->save();
+        }
      }
     
      public function Deleting(PdvDuplicata $duplicata){

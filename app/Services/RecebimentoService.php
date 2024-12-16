@@ -35,7 +35,6 @@ class RecebimentoService
 
     public static function inserirPeloDelivery($receber, $forma_pagto){
         $conta                          = ContaCorrente::where("empresa_id", $receber->empresa_id)->first();
-
         $classificacao                  = ClassificacaoFinanceira::where("empresa_id", $receber->empresa_id)->first();
 
         $recebimento = new \stdClass();
@@ -60,7 +59,6 @@ class RecebimentoService
 
     public static function inserirPelaLojaPedido($receber, $forma_pagto){
         $conta                          = ContaCorrente::where("empresa_id", $receber->empresa_id)->first();
-
         $classificacao                  = ClassificacaoFinanceira::where("empresa_id", $receber->empresa_id)->first();
 
         $recebimento = new \stdClass();
@@ -86,6 +84,7 @@ class RecebimentoService
     public static function inserirPelaCobranca($receber, $forma_pagto){
         $conta                          = ContaCorrente::where("empresa_id", $receber->empresa_id)->first();
         $classificacao                  = ClassificacaoFinanceira::where("empresa_id", $receber->empresa_id)->first();
+
         $recebimento                    = new \stdClass();
         $recebimento->empresa_id        = $receber->empresa_id ;
         $recebimento->usuario_id        = $receber->usuario_id;
@@ -134,6 +133,7 @@ class RecebimentoService
     public static function inserirPelaContaReceber($receber, $forma_pagto){
         $conta                          = ContaCorrente::where("empresa_id", $receber->empresa_id)->first();
         $classificacao                  = ClassificacaoFinanceira::where("empresa_id", $receber->empresa_id)->first();
+
         $recebimento                    = new \stdClass();
         $recebimento->empresa_id        = $receber->empresa_id ;
         $recebimento->usuario_id        = $receber->usuario_id;
@@ -154,6 +154,5 @@ class RecebimentoService
        // $recebimento->conta_corrente_id = $emitente->conta_caixa_id ;
         $pago = FinRecebimento::Create(objToArray($recebimento));
     }
-
 }
 
