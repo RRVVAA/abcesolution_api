@@ -29,6 +29,7 @@ class NfceController extends Controller
     public function transmitirPelaComanda($comanda_id)
     {
         $nfce = Nfce::where("comanda_id", $comanda_id)->first();
+        print_r($nfce->itens);exit;
 
         if (!$nfce) {
             echo json_encode("-1");
@@ -50,7 +51,6 @@ class NfceController extends Controller
 
     private function transmitirNfce($nfce)
     {
-        print_r($nfce->itens);exit;
         $notafiscal = NotaFiscalService::prepararNfce($nfce);
 
         $xml = NfceService::gerarNfce($notafiscal);
