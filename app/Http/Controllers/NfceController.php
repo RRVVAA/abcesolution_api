@@ -50,7 +50,7 @@ class NfceController extends Controller
 
     private function transmitirNfce($nfce)
     {
-        print_r($nfce);exit;
+        print_r($nfce->itens);exit;
         $notafiscal = NotaFiscalService::prepararNfce($nfce);
 
         $xml = NfceService::gerarNfce($notafiscal);
