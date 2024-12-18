@@ -60,7 +60,7 @@ function refazTodosCalculos($nfce){
                 $tributacao = $tributacao_geral;
             }
                         
-            $item->cstICMS  = $tributacao->cstICMS;
+            $item->cstICMS  = $itens->cstICMS;
             
             $item->numero_item  = $j++;
             calcularImposto($nfce, $item, $tributacao, $produto);
@@ -93,15 +93,15 @@ function calcularImposto($nfce, $item, $tributacao, $produto){
         $pICMS  = $tributacao->pICMS;
     }    
     
-    if($tributacao->cstICMS=="10" || $tributacao->cstICMS=="30" || $tributacao->cstICMS=="70" || $tributacao->cstICMS=="201"
-        || $tributacao->cstICMS=="202" || $tributacao->cstICMS=="203" || $tributacao->cstICMS=="900" || $tributacao->cstICMS=="500"){
+    if($item->cstICMS=="10" || $item->cstICMS=="30" || $item->cstICMS=="70" || $item->cstICMS=="201"
+        || $item->cstICMS=="202" || $item->cstICMS=="203" || $item->cstICMS=="900" || $item->cstICMS=="500"){
             $iva = TributacaoIva::where(["tributacao_id" => $tributacao->id, "uf_origem"=>$nfce->em_UF,"uf_destino"=>$nfce->em_UF])->first();
             if(!$iva){
                 $iva = TributacaoIva::where(["tributacao_id" => $tributacao->id, "uf_origem"=>$nfce->em_UF,"uf_destino"=>'TD'])->first();
             }
             //Se tiver o iva
             if($iva){
-                $item->cstICMS = $iva->cstIcms ? $iva->cstIcms : $tributacao->cstICMS;
+                $item->cstICMS = $iva->cstIcms ? $iva->cstIcms : $item->cstICMS;
             }
             IcmsService::calculoICMS($item, $vBCICMS, $tributacao, $pICMS , $nfce->destinatario, $produto, $icms_estado, $iva);
     }else{

@@ -98,13 +98,10 @@ class ItemNfceObserver
         refazTodosCalculos($nfce);
         atualizarTotaisImpostosDaNota($nfce->id);
      }
-      
-   
+
     public function deleted(NfeItem $item){ 
         $nfe = Nfe::find($item->nfe_id);      
         refazTodosCalculos($nfe);
         atualizarTotaisImpostosDaNota($nfe->id );
     }
-    
-   
 }
