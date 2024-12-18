@@ -15,7 +15,7 @@ class ItemNfceObserver
     public function creating(NfceItem $item){  
         $produto        = Produto::find($item->cProd);
         $nfce           = Nfce::find($item->nfce_id);
-        $tributacao     = Tributacao::getTributacaoPadrao($nfce->natureza_operacao_id, $produto->id);
+        $tributacao     = Tributacao::getTributacaoPadrao($nfce->natureza_operacao_id, $produto->id, $nfce->empresa_id);
 
         $item->orig     = $produto->origem ;
         $item->cEAN     = ($produto->gtin) ? $produto->gtin :"SEM GTIN";
@@ -81,8 +81,7 @@ class ItemNfceObserver
         }
         
         $item->vUnTrib  = $item->vUnCom;
-        $item->indTot   = 1; //ver depois 
-        
+        $item->indTot   = 1; //ver depois
     }
         
     

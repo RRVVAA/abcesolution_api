@@ -33,6 +33,7 @@ class Emitente extends Model
         'pais',
         'codPais',
         'crt',
+        'tributacao_padrao',
         'cst_csosn_padrao',
         'cst_cofins_padrao',
         'cst_pis_padrao',

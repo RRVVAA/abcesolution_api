@@ -1,5 +1,7 @@
 <?php
- use App\Models\IcmsEstado;
+
+use App\Models\Emitente;
+use App\Models\IcmsEstado;
 use App\Models\NaturezaOperacao;
 use App\Models\Nfce;
 use App\Models\NfceItem;
@@ -18,6 +20,9 @@ function refazTodosCalculos($nfce){
     $qtdeItem           = count($itens);
     $natureza_operacao  = NaturezaOperacao::where("id", $nfce->natureza_operacao_id)->first();
     $tributacao_geral   = Tributacao::where(["natureza_operacao_id" =>$natureza_operacao->id,"padrao"=>"S"])->first();
+
+    $emitente = Emitente::where('empresa_id', $nfce->empresa_id)->first();
+    $tributacaoPadrao = Tributacao::find($emitente->tributacao_padrao);
     
     $j                  = 1;
     $total_desc_item    = 0;
@@ -47,9 +52,11 @@ function refazTodosCalculos($nfce){
             
             $produto        = Produto::find($item->cProd);
             $tributaProduto = TributacaoProduto::where(["natureza_operacao_id"=>$nfce->natureza_operacao_id,"produto_id"=>$produto->id])->first();
-            if(!empty($tributaProduto->tributacao)){
+            if ($tributacaoPadrao) {
+                $tributacao = $tributacaoPadrao;
+            } else  if(!empty($tributaProduto->tributacao)){
                 $tributacao =  $tributaProduto->tributacao;
-            }else{
+            } else {
                 $tributacao = $tributacao_geral;
             }
                         

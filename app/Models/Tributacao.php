@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tributacao extends Model
 {
-    
-    protected $fillable =[
+
+    protected $fillable = [
         'natureza_operacao_id',
         'descricao',
         'padrao',
@@ -65,20 +65,25 @@ class Tributacao extends Model
         'vAliqProd_cofinsst',
         'vCofins',
         'uso_consumo',
-        'vbc_somente_produto','vbc_frete','vbc_ipi','vbc_outros', 'vbc_seguro','vbc_desconto',
-        'ipi_somente_produto','ipi_frete','ipi_outros','ipi_seguro','ipi_desconto',
-        'pis_somente_produto','pis_frete','pis_ipi','pis_outros','pis_seguro','pis_desconto',
-        'cofins_somente_produto','cofins_frete','cofins_ipi','cofins_outros','cofins_seguro','cofins_desconto',
-        'cst900_icms','cst900_redbc','cst900_credisn','cst900_st','cst900_redbcst',
+        'vbc_somente_produto', 'vbc_frete', 'vbc_ipi', 'vbc_outros', 'vbc_seguro', 'vbc_desconto',
+        'ipi_somente_produto', 'ipi_frete', 'ipi_outros', 'ipi_seguro', 'ipi_desconto',
+        'pis_somente_produto', 'pis_frete', 'pis_ipi', 'pis_outros', 'pis_seguro', 'pis_desconto',
+        'cofins_somente_produto', 'cofins_frete', 'cofins_ipi', 'cofins_outros', 'cofins_seguro', 'cofins_desconto',
+        'cst900_icms', 'cst900_redbc', 'cst900_credisn', 'cst900_st', 'cst900_redbcst',
     ];
-    
-    
-    public static function getTributacaoPadrao($natureza_operacao_id, $produto_id){
-        $tributacao_geral   = Tributacao::where(["natureza_operacao_id" =>$natureza_operacao_id,"padrao"=>"S"])->first();        
-        $tributaProduto     = TributacaoProduto::where(["natureza_operacao_id"=>$natureza_operacao_id,"produto_id"=>$produto_id])->first();
-        if($tributaProduto){
-            $tributacao =  $tributaProduto->tributacao;
-        }else{
+
+
+    public static function getTributacaoPadrao($natureza_operacao_id, $produto_id, $empresa_id)
+    {
+        $emitente = Emitente::where('empresa_id', $empresa_id)->first();
+        $tributacao = Tributacao::find($emitente->tributacao_padrao);
+        $tributacao_geral = Tributacao::where(["natureza_operacao_id" => $natureza_operacao_id, "padrao" => "S"])->first();
+        $tributaProduto = TributacaoProduto::where(["natureza_operacao_id" => $natureza_operacao_id, "produto_id" => $produto_id])->first();
+        if ($tributacao) {
+            $tributacao = $tributaProduto->tributacao;
+        } else if ($tributaProduto) {
+            $tributacao = $tributaProduto->tributacao;
+        } else {
             $tributacao = $tributacao_geral;
         }
         return $tributacao;
