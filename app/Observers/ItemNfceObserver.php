@@ -15,8 +15,7 @@ class ItemNfceObserver
     public function creating(NfceItem $item){  
         $produto        = Produto::find($item->cProd);
         $nfce           = Nfce::find($item->nfce_id);
-        $tributacao     = Tributacao::getTributacaoPadrao($nfce->natureza_operacao_id, $produto->id, $nfce->empresa_id);
-        print_r($tributacao);exit;
+        $tributacao     = Tributacao::getTributacaoPadrao($nfce->natureza_operacao_id, $produto->id);
 
         $item->orig     = $produto->origem ;
         $item->cEAN     = ($produto->gtin) ? $produto->gtin :"SEM GTIN";
@@ -31,8 +30,8 @@ class ItemNfceObserver
         $item->cEANTrib = ($produto->gtin) ? $produto->gtin :"SEM GTIN";
         $item->xPed     = $item->nfce_id  ;
         $item->cstIPI   = $tributacao->cstIPI;
-        $item->cstPIS   = $tributacao->cstPIS;
-        $item->cstCOFINS= $tributacao->cstCOFINS;
+        $item->cstPIS   = $tributacao->cstPIS  			   ;
+        $item->cstCOFINS= $tributacao->cstCOFINS		    ;
         $item->cstICMS  = $tributacao->cstICMS;
         $item->CFOP     = $tributacao->cfop ;
         $item->tipo_calc_ipi      =  $tributacao->tipo_calc_ipi;
@@ -68,6 +67,7 @@ class ItemNfceObserver
         $item->cst900_st          =  $tributacao->cst900_st;
         $item->cst900_redbcst     =  $tributacao->cst900_redbcst;
 
+
         if($produto->unidade_tributavel = null ||  $produto->unidade_tributavel== ''){
             $item->uTrib = tiraAcento($produto->unidade);
         }else{
@@ -82,6 +82,7 @@ class ItemNfceObserver
         
         $item->vUnTrib  = $item->vUnCom;
         $item->indTot   = 1; //ver depois
+
     }
         
     
@@ -99,9 +100,12 @@ class ItemNfceObserver
         atualizarTotaisImpostosDaNota($nfce->id);
      }
 
+
     public function deleted(NfeItem $item){ 
         $nfe = Nfe::find($item->nfe_id);      
         refazTodosCalculos($nfe);
         atualizarTotaisImpostosDaNota($nfe->id );
     }
+
+
 }
