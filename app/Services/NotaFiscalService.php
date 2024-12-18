@@ -455,6 +455,7 @@ class NotaFiscalService
 
     public static function prepararNfce($nfce)
     {
+        print_r($nfce);exit;
         $nota = new \stdClass();
         $nota->id = $nfce->id;
         $nota->venda_id = $nfce->venda_id;
