@@ -308,7 +308,6 @@ class PdvVendaService
         $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.PDV'))->first();
         $tributacao = Tributacao::where(["natureza_operacao_id" => $natureza_operacao->id, "padrao" => "S"])->first();
         $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao, $tributacao);
-        print_r($retorno->nfce_id);
 
 
         if ($retorno->nfce_id) {
