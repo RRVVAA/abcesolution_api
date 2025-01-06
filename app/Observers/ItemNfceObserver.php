@@ -82,10 +82,8 @@ class ItemNfceObserver
         
         $item->vUnTrib  = $item->vUnCom;
         $item->indTot   = 1; //ver depois
-
     }
-        
-    
+
     public function created(NfceItem $item){
        // echo "item - created<br>";
         //Atualizando o campo vProd da Nota
@@ -100,12 +98,9 @@ class ItemNfceObserver
         atualizarTotaisImpostosDaNota($nfce->id);
      }
 
-
     public function deleted(NfeItem $item){ 
         $nfe = Nfe::find($item->nfe_id);      
         refazTodosCalculos($nfe);
         atualizarTotaisImpostosDaNota($nfe->id );
     }
-
-
 }

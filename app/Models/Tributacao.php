@@ -80,12 +80,11 @@ class Tributacao extends Model
         $tributacao_geral = Tributacao::where(["natureza_operacao_id" => $natureza_operacao_id, "padrao" => "S"])->first();
         $tributaProduto = TributacaoProduto::where(["natureza_operacao_id" => $natureza_operacao_id, "produto_id" => $produto_id])->first();
         if ($tributacao) {
-            $tributacao = $tributaProduto->tributacao;
+            return $tributacao;
         } else if ($tributaProduto) {
-            $tributacao = $tributaProduto->tributacao;
+            return $tributaProduto->tributacao;
         } else {
-            $tributacao = $tributacao_geral;
+            return $tributacao_geral;
         }
-        return $tributacao;
     }
 }
