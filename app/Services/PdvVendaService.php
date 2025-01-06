@@ -251,7 +251,6 @@ class PdvVendaService
 
     public function finalizarVenda($dados)
     {
-        print_r($dados); exit;
         $venda_id = $dados["venda_id"];
         $pdvvenda = PdvVenda::find($venda_id);
         $num_pdv = $pdvvenda->caixa->num_pdv;
@@ -309,6 +308,7 @@ class PdvVendaService
         $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.PDV'))->first();
         $tributacao = Tributacao::where(["natureza_operacao_id" => $natureza_operacao->id, "padrao" => "S"])->first();
         $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao, $tributacao);
+        print_r($retorno->nfce_id);
 
 
         if ($retorno->nfce_id) {
@@ -316,6 +316,7 @@ class PdvVendaService
             if ($nfce) {
                 $retorno->nfce_id = $nfce->id;
                 $notafiscal = NotaFiscalService::prepararNfce($nfce);
+                print_r($notafiscal); exit;
 
                 if ($nfce->status_id == config('constantes.status.EM_PROCESSAMENTO')) {
                     return $retorno;
