@@ -309,7 +309,6 @@ class PdvVendaService
         $tributacao = Tributacao::where(["natureza_operacao_id" => $natureza_operacao->id, "padrao" => "S"])->first();
         $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao, $tributacao);
 
-
         if ($retorno->nfce_id) {
             $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
             if ($nfce) {

@@ -121,7 +121,7 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao, $tributacao)
         NfceItem::create(objToArray($item));
     }
 
-    print_r($pdvVenda->duplicatas); exit;
+    //print_r($pdvVenda->duplicatas); exit;
 
     //Duplicata
     NfceDuplicata::where("nfce_id", $id_nfce)->delete();
