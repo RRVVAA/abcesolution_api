@@ -331,8 +331,8 @@ class PdvVendaService
                 if (!$xml->tem_erro) {
                     $retorno->chave = $xml->chave;
                     $xml_assinado = NfceService::assinarXml($xml->xml, $xml->chave, $notafiscal);
-                    print_r($xml->chave);
-                    print_r($xml_assinado); exit;
+                    //print_r($xml->chave);
+                    //print_r($xml_assinado); exit;
                     if (!$xml_assinado->tem_erro) {
                         $envio = NfceService::enviarXML($xml_assinado->xml, $xml->chave, $notafiscal);
                         if (!$envio->tem_erro) {
