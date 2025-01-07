@@ -57,7 +57,6 @@ Route::get('/produto/produtoPorCodigoBarra/{barra}/{token}', [ProdutoApiControll
 Route::get('/produto/produtoPorIdOuCodigoBarra/{barra}/{token}', [ProdutoApiController::class, 'produtoPorIdOuCodigoBarra']);
 Route::get('/produto/detalheProduto/{codigo}/{token}', [ProdutoApiController::class, 'detalheProduto']);
 
-
 //Cliente
 Route::get('/cliente', [ClienteApiController::class, 'categoriasPorEmpresa']);
 Route::post('/cliente/logar', [ClienteApiController::class, 'logar']);
@@ -137,7 +136,6 @@ Route::post('webhook/pix', [WebHookController::class, 'pix']);
 Route::post('webhook/escuta', [WebHookController::class, 'escuta']);
 
 //Mercado Pago
-
 Route::get('/mercadopago/buscarTransacaoMercadoPago/{id}',[MercadoPagoApiController::class, 'buscarTransacaoMercadoPago']);
 Route::get('/mercadopago/verificaSeCobrancaPagaNoPix/{id}',[MercadoPagoApiController::class, 'verificaSeCobrancaPagaNoPix']);
 Route::get('/mercadopago/verificaSePedidoPagoNoPix/{id}',[MercadoPagoApiController::class, 'verificaSePedidoPagoNoPix']);
@@ -156,7 +154,6 @@ Route::get('/pdvsangria/listaPorUsuario/{uuid}',[PdvSangriaApiController::class,
 Route::post('/pdvsuplemento/salvar',[PdvSuplementoApiController::class, 'salvar']);
 Route::get('/pdvsuplemento/listaPorCaixa/{id}',[PdvSuplementoApiController::class, 'listaPorCaixa']);
 Route::get('/pdvsuplemento/listaPorUsuario/{uuid}',[PdvSuplementoApiController::class, 'listaPorUsuario']);
-
 
 //Venda Balcão
 Route::post('/vendabalcao/novoPedido',[VendaBalcaoApiController::class, 'novoPedido']);
@@ -178,7 +175,6 @@ Route::post('/resgate/criarPdvVendaPelVenda',[PdvResgateApiController::class, 'c
 Route::post('/resgate/criarPdvVendaPelOrdemServico',[PdvResgateApiController::class, 'criarPdvVendaPelOrdemServico']);
 Route::get('/resgate/lista/{uuid}',[PdvResgateApiController::class, 'lista']);
 
-
 Route::get('/pdvvenda/getVendaAbertaPorUsuario/{uuid}/{caixa_id}',[PdvVendaApiController::class, 'getVendaAbertaPorUsuario']);
 Route::get('/pdvvenda/iniciarPdvVenda/{uuid}',[PdvVendaApiController::class, 'iniciarPdvVenda']);
 Route::post('/pdvvenda/salvar',[PdvVendaApiController::class, 'salvar']);
@@ -197,9 +193,7 @@ Route::get('/pdvvenda/listaPorCaixa/{id}',[PdvVendaApiController::class, 'listaP
 Route::get('/pdvvenda/listaPorUsuario/{uuid}',[PdvVendaApiController::class, 'listaPorUsuario']);
 Route::get('/pdvvenda/getVendaPorId/{id}',[PdvVendaApiController::class, 'getVendaPorId']);
 
-
 //NFCE
-
 Route::get('/nfce/transmitirNfce/{id}',[NfceController::class, 'transmitirNfce'])->name('nfce.transmitirNfce');
 Route::get('/nfce/transmitirPelaComanda/{id}',[NfceController::class, 'transmitirPelaComanda'])->name('nfce.transmitirPelaComanda');
 Route::get('/nfce/consultar/{id}',[NfceController::class, 'consultar'])->name('nfce.consultar');
@@ -319,7 +313,6 @@ Route::get('/pdv/listaVendaPorUsuario/{id_empresa}/{id_usuario}',[PdvController:
 Route::get('/pdv/listaVendaPorCaixa/{id_empresa}/{id_caixa}',[PdvController::class, 'listaVendaPorCaixa'])->name('pdv.listaVendaPorCaixa');
 Route::get('/pdv/getVenda/{id_empresa}/{id_venda}',[PdvController::class, 'getVenda'])->name('pdv.getVenda');
 
-
 Route::get('/pdv/listaCaixaAbertoPorUsuario/{id}/{id_empresa}',[PdvController::class, 'listaCaixaAbertoPorUsuario'])->name('pdv.listaCaixaAbertoPorUsuario');
 
 Route::get('/pdv/verificaSeTemCaixaAbertoPorUsuario/{id}/{id_empresa}',[PdvController::class, 'verificaSeTemCaixaAbertoPorUsuario'])->name('pdv.verificaSeTemCaixaAbertoPorUsuario');
@@ -333,11 +326,7 @@ Route::post('/pdv/getDadosParaGerarNfce',[PdvController::class, 'getDadosParaGer
 Route::get('/pdv/imprimirNfcePelaVenda/{id}',[PdvController::class, 'imprimirNfcePelaVenda'])->name('pdv.imprimirNfcePelaVenda');
 Route::get('/pdv/imprimirNfcePeloNfce/{id}',[PdvController::class, 'imprimirNfcePeloNfce'])->name('pdv.imprimirNfcePeloNfce');
 Route::get('/pdv/imprimirNfcePelaChave/{id}',[PdvController::class, 'imprimirNfcePelaChave'])->name('pdv.imprimirNfcePelaChave');
-
 */
-
-
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
