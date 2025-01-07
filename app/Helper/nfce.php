@@ -119,11 +119,10 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
         $item->vProd = $item->qCom * $item->preco_original - ($item->desconto_por_unidade * $item->qCom);
         NfceItem::create(objToArray($item));
     }
-    print_r($pdvVenda->duplicatas); exit;
 
     //Duplicata
     NfceDuplicata::where("nfce_id", $id_nfce)->delete();
-    if (count($pdvVenda->duplicatas) > 0) {
+    if ($pdvVenda->duplicatas) {
         $contFatura = 1;
         foreach ($pdvVenda->duplicatas as $ft) {
             $dup = new \stdClass();
