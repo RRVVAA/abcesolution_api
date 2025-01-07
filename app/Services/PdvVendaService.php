@@ -326,8 +326,7 @@ class PdvVendaService
                 }
 
                 $xml = NfceService::gerarNfce($notafiscal);
-                print_r($xml); exit;
-
+                //print_r($xml); exit;
 
                 if (!$xml->tem_erro) {
                     $retorno->chave = $xml->chave;
