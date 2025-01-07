@@ -369,7 +369,6 @@ class NotaFiscalService
 
         $fatura = new \stdClass();
 
-
         $duplicatas = array();
         if ($nfe->duplicatas) {
             foreach ($nfe->duplicatas as $dup) {
@@ -387,7 +386,6 @@ class NotaFiscalService
         $cobranca->vDesc = $nfe->vDesc;
         $cobranca->vLiq = $nfe->vLiq;
         $cobranca->duplicatas = $duplicatas;
-
 
         if ($nfe->autorizados) {
             $autorizados = array();
@@ -437,7 +435,6 @@ class NotaFiscalService
 
         $nota->vTroco = $nfe->vTroco; //incluso no layout 4.00, obrigatório informar para NFCe (65)
 
-
         $dados = array(
             "nota" => $nota,
             "emitente" => $emitente,
@@ -450,7 +447,6 @@ class NotaFiscalService
         );
 
         return $dados;
-
     }
 
     public static function prepararNfce($nfce)

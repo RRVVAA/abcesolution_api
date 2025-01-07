@@ -10,8 +10,7 @@ use App\Models\GradeProduto;
 class ItemPdvVendaObserver
 {
     public function created(PdvItemVenda $item)
-    { 
-        
+    {
         PdvVenda::somarTotal($item->venda_id );
         if($item->grade_produto_id){
             $grade = GradeProduto::find($item->grade_produto_id);
@@ -31,7 +30,6 @@ class ItemPdvVendaObserver
                 GradeMovimento::Create(objToArray($mov));
             }
         }
-        
     }
     
     public function deleted(PdvItemVenda $item)
