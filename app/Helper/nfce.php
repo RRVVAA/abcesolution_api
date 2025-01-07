@@ -108,7 +108,6 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao, $tributacao)
         $item->cProd = $i->produto_id;
         $item->preco_original = $i->valor;
 
-
         //$item->subtotal_liquido= $i->subtotal_liquido;
         $item->desconto_por_unidade = $i->desconto_por_unidade;
         $item->total_desconto_item = $i->total_desconto_item;

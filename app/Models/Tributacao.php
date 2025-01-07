@@ -75,16 +75,24 @@ class Tributacao extends Model
 
     public static function getTributacaoPadrao($natureza_operacao_id, $produto_id, $empresa_id)
     {
+        $produto = Produto::find($produto_id);
         $emitente = Emitente::where('empresa_id', $empresa_id)->first();
         $tributacao = Tributacao::find($emitente->tributacao_padrao);
         $tributacao_geral = Tributacao::where(["natureza_operacao_id" => $natureza_operacao_id, "padrao" => "S"])->first();
         $tributaProduto = TributacaoProduto::where(["natureza_operacao_id" => $natureza_operacao_id, "produto_id" => $produto_id])->first();
+
         if ($tributacao) {
-            return $tributacao;
+            $tributacaoSelecionada =  $tributacao;
         } else if ($tributaProduto) {
-            return $tributaProduto->tributacao;
+            $tributacaoSelecionada =  $tributaProduto->tributacao;
         } else {
-            return $tributacao_geral;
+            $tributacaoSelecionada =  $tributacao_geral;
         }
+
+        if (!empty($produto->cfop)) {
+            return $tributacaoSelecionada->cfop = $produto->cfop;
+        }
+
+        return $tributacaoSelecionada;
     }
 }
