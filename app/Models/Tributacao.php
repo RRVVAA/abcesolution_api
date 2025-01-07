@@ -97,8 +97,6 @@ class Tributacao extends Model
             $tributacaoSelecionada->cfop = $produto->cfop;
         }
 
-        print_r($tributacaoSelecionada); exit;
-
         return $tributacaoSelecionada;
     }
 }
