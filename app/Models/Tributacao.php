@@ -78,10 +78,14 @@ class Tributacao extends Model
         $produto = Produto::find($produto_id);
         $emitente = Emitente::where('empresa_id', $empresa_id)->first();
         $tributacao = Tributacao::find($emitente->tributacao_padrao);
-        $tributacao_geral = Tributacao::where(["natureza_operacao_id" => $natureza_operacao_id, "padrao" => "S"])->first();
-        $tributaProduto = TributacaoProduto::where(["natureza_operacao_id" => $natureza_operacao_id, "produto_id" => $produto_id])->first();
+        $tributacao_geral = Tributacao::where("natureza_operacao_id", $natureza_operacao_id)
+            ->where("padrao", "S")
+            ->first();
+        $tributaProduto = TributacaoProduto::here("natureza_operacao_id", $natureza_operacao_id)
+            ->where("produto_id", $produto_id)
+            ->first();
 
-        if (!empty($tributaProduto->tributacao)) {
+        if ($tributaProduto) {
             $tributacaoSelecionada =  $tributaProduto->tributacao;
         } else if ($tributacao) {
             $tributacaoSelecionada =  $tributacao;
