@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tributacao extends Model
 {
-
     protected $fillable = [
         'natureza_operacao_id',
         'descricao',

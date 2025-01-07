@@ -262,7 +262,6 @@ class PdvVendaService
         $pdvvenda->status_id = config("constantes.status.CONCRETIZADO");
         $pdvvenda->cliente_cnpj = $dados["cliente_cnpj"];
         $pdvvenda->cliente_cpf = $dados["cliente_cpf"];
-
         $pdvvenda->save();
 
         PdvCaixa::atualizar($pdvvenda->caixa_id);
@@ -302,7 +301,7 @@ class PdvVendaService
         $retorno = new \stdClass();
         $pdvvenda = PdvVenda::find($pdvvenda_id);
         $num_pdv = $pdvvenda->caixa->num_pdv;
-        $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
+        //$nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
         $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.PDV'))->first();
         $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao);
 
