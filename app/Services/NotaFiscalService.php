@@ -558,7 +558,7 @@ class NotaFiscalService
                 //$observacao->infAdProd = 'informacao adicional do item';
 
                 $imposto = new \stdClass();
-                //$imposto->item       = 1; //item da NFe
+                // $imposto->item       = 1; //item da NFe
                 // $imposto->vTotTrib   = null;
 
                 $icms = new \stdClass();
@@ -598,7 +598,6 @@ class NotaFiscalService
                 $icms->pICMSEfet = $item->pICMSEfet;
                 $icms->vICMSEfet = $item->vICMSEfet;
                 $icms->vICMSSubstituto = $item->vICMSSubstituto;
-
 
                 $icms->modBC = $item->modBC;
                 $icms->vBC = $item->vBCICMS;
@@ -684,7 +683,6 @@ class NotaFiscalService
             }
         }
 
-
         $nota->vBC = $nfce->vBC;
         $nota->vICMS = $nfce->vICMS;
         $nota->vICMSDeson = $nfce->vICMSDeson;
@@ -709,7 +707,6 @@ class NotaFiscalService
         $nota->infAdFisco = $nfce->infAdFisco;
         $nota->infCpl = $nfce->infCpl;
 
-
         $duplicatas = array();
         if ($nfce->duplicatas) {
             foreach ($nfce->duplicatas as $dup) {
@@ -727,7 +724,6 @@ class NotaFiscalService
         $cobranca->vDesc = $nfce->vDesc;
         $cobranca->vLiq = $nfce->vLiq;
         $cobranca->duplicatas = $duplicatas;
-
 
         $formas = NfceDuplicata::where("nfce_id", $nfce->id)->select(NfceDuplicata::raw('DISTINCT tPag, SUM(vDup) AS vDup'))->groupBy('tPag')->get();
 
@@ -748,7 +744,6 @@ class NotaFiscalService
 
         $nota->vTroco = $nfce->vTroco; //incluso no layout 4.00, obrigatório informar para NFCe (65)
 
-
         $dados = (object)array(
             "nota" => $nota,
             "emitente" => $emitente,
@@ -757,9 +752,6 @@ class NotaFiscalService
             "pagamentos" => ($pagamentos) ?? null,
         );
 
-
         return $dados;
-
     }
 }
-

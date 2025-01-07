@@ -270,9 +270,7 @@ class PdvVendaService
         $retorno->tem_erro = false;
         $retorno->venda_id = $venda_id;
         $retorno->protocolo = null;
-        $retorno->tem_erro = false;
         $retorno->nfce_id = null;
-        $retorno->protocolo = null;
         $retorno->chave = null;
 
         if ($num_pdv->transmitir_nfce == "S") {
@@ -306,8 +304,7 @@ class PdvVendaService
         $num_pdv = $pdvvenda->caixa->num_pdv;
         $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
         $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.PDV'))->first();
-        $tributacao = Tributacao::where(["natureza_operacao_id" => $natureza_operacao->id, "padrao" => "S"])->first();
-        $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao, $tributacao);
+        $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao);
 
         if ($retorno->nfce_id) {
             $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();

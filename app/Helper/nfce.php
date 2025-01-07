@@ -6,7 +6,7 @@ use App\Models\NfceDuplicata;
 use App\Models\NfceItem;
 use App\Services\ConstanteService;
 
-function inserirNfcePelaVenda($pdvVenda, $natureza_operacao, $tributacao)
+function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
 {
     $emitente = Emitente::where("empresa_id", $pdvVenda->empresa_id)->first();
 
@@ -119,7 +119,6 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao, $tributacao)
         $item->vProd = $item->qCom * $item->preco_original - ($item->desconto_por_unidade * $item->qCom);
         NfceItem::create(objToArray($item));
     }
-
     //print_r($pdvVenda->duplicatas); exit;
 
     //Duplicata
