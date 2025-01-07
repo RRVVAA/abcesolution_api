@@ -6,6 +6,7 @@ use App\Models\Nfce;
 use App\Models\NfceDuplicata;
 use App\Models\Nfe;
 use App\Models\NfeDuplicata;
+use App\Models\PdvDuplicata;
 
 
 class NotaFiscalService
@@ -711,6 +712,19 @@ class NotaFiscalService
                 $duplicata->dVenc = $dup->dVenc;
                 $duplicata->vDup = $dup->vDup;
                 $duplicatas[] = $duplicata;
+            }
+        } else {
+            $duplicatasPdv = PdvDuplicata::where('venda_id', $nfce->venda_id)->get();
+            foreach ($duplicatasPdv as $ft) {
+                $dup = new \stdClass();
+                $dup->nfce_id = $nfce->id;
+                $dup->nDup = $ft->nDup;
+                $dup->dVenc = $ft->dVenc;
+                $dup->vDup = $ft->vDup;
+                $dup->tPag = $ft->tPag;
+                $dup->obs = $ft->obs;
+                NfceDuplicata::Create(objToArray($dup));
+                $contFatura++;
             }
         }
 
