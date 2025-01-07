@@ -90,7 +90,7 @@ class Tributacao extends Model
         }
 
         if (!empty($produto->cfop)) {
-            return $tributacaoSelecionada->cfop = $produto->cfop;
+            $tributacaoSelecionada->cfop = $produto->cfop;
         }
 
         return $tributacaoSelecionada;
