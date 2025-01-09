@@ -80,7 +80,7 @@ class Tributacao extends Model
         $tributacao_geral = Tributacao::where("natureza_operacao_id", $natureza_operacao_id)
             ->where("padrao", "S")
             ->first();
-        $tributaProduto = TributacaoProduto::here("natureza_operacao_id", $natureza_operacao_id)
+        $tributaProduto = TributacaoProduto::where("natureza_operacao_id", $natureza_operacao_id)
             ->where("produto_id", $produto_id)
             ->first();
 
