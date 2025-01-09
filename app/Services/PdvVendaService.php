@@ -275,6 +275,8 @@ class PdvVendaService
         if ($num_pdv->transmitir_nfce == "S") {
             if ($dados["tem_pendencia"] == "N") {
                 $resultado = self::transmitirNfcePelaVenda($venda_id);
+
+                i($resultado);
                 for ($i = 0; $i <= 3; $i++) {
                     if (!$resultado) {
                         sleep(3);
