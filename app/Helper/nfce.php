@@ -137,8 +137,6 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
             $contFatura++;
         }
     }
-
-    print_r($nfceDuplicata); exit;
     DB::commit();
 
     return $id_nfce;
