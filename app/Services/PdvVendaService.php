@@ -275,7 +275,6 @@ class PdvVendaService
         if ($num_pdv->transmitir_nfce == "S") {
             if ($dados["tem_pendencia"] == "N") {
                 $resultado = self::transmitirNfcePelaVenda($venda_id);
-                print_r($resultado); exit;
                 for ($i = 0; $i <= 3; $i++) {
                     if (!$resultado) {
                         sleep(3);
@@ -306,6 +305,7 @@ class PdvVendaService
         $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.PDV'))->first();
         $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao);
 
+        print_r($retorno); exit;
         if ($retorno->nfce_id) {
             $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
             if ($nfce) {
