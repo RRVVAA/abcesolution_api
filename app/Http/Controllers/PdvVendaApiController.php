@@ -34,9 +34,6 @@ class PdvVendaApiController extends Controller
     }
 
     public function finalizarVenda(Request $request){
-        echo "<pre>";
-        print_r($request->all());
-        exit;
         return $this->pdvVendaService->finalizarVenda($request->all());
     }
     

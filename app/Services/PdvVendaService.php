@@ -251,6 +251,7 @@ class PdvVendaService
 
     public function finalizarVenda($dados)
     {
+        i($dados);
         $venda_id = $dados["venda_id"];
         $pdvvenda = PdvVenda::find($venda_id);
         $num_pdv = $pdvvenda->caixa->num_pdv;
