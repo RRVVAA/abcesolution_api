@@ -272,7 +272,6 @@ class PdvVendaService
         $retorno->nfce_id = null;
         $retorno->chave = null;
 
-
         if ($num_pdv->transmitir_nfce == "S") {
             if ($dados["tem_pendencia"] == "N") {
                 $resultado = self::transmitirNfcePelaVenda($venda_id);
