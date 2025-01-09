@@ -251,7 +251,6 @@ class PdvVendaService
 
     public function finalizarVenda($dados)
     {
-        i($dados);
         $venda_id = $dados["venda_id"];
         $pdvvenda = PdvVenda::find($venda_id);
         $num_pdv = $pdvvenda->caixa->num_pdv;
@@ -272,6 +271,8 @@ class PdvVendaService
         $retorno->protocolo = null;
         $retorno->nfce_id = null;
         $retorno->chave = null;
+
+        i($pdvvenda);
 
         if ($num_pdv->transmitir_nfce == "S") {
             if ($dados["tem_pendencia"] == "N") {
