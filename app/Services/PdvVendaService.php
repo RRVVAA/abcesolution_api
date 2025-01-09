@@ -308,7 +308,7 @@ class PdvVendaService
         if ($retorno->nfce_id) {
             $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
 
-            print_r($nfce); exit;
+            print_r($nfce->duplicatas); exit;
             if ($nfce) {
                 $retorno->nfce_id = $nfce->id;
                 $notafiscal = NotaFiscalService::prepararNfce($nfce);
