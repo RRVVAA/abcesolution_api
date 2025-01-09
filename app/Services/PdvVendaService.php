@@ -305,12 +305,12 @@ class PdvVendaService
         $natureza_operacao = NaturezaOperacao::where("padrao", config('constantes.padrao_natureza.PDV'))->first();
         $retorno->nfce_id = inserirNfcePelaVenda($pdvvenda, $natureza_operacao);
 
-        print_r($retorno); exit;
         if ($retorno->nfce_id) {
             $nfce = Nfce::where("pdvvenda_id", $pdvvenda_id)->first();
             if ($nfce) {
                 $retorno->nfce_id = $nfce->id;
                 $notafiscal = NotaFiscalService::prepararNfce($nfce);
+                print_r($notafiscal); exit;
 
                 if ($nfce->status_id == config('constantes.status.EM_PROCESSAMENTO')) {
                     return $retorno;
