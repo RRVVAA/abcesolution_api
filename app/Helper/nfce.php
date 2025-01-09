@@ -123,7 +123,6 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
 
     //Duplicata
     NfceDuplicata::where("nfce_id", $id_nfce)->delete();
-    i($pdvVenda->duplicatas);
     if ($pdvVenda->duplicatas) {
         $contFatura = 1;
         foreach ($pdvVenda->duplicatas as $ft) {
