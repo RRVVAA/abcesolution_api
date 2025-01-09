@@ -310,7 +310,7 @@ class PdvVendaService
             if ($nfce) {
                 $retorno->nfce_id = $nfce->id;
                 $notafiscal = NotaFiscalService::prepararNfce($nfce);
-                print_r($notafiscal); exit;
+                //print_r($notafiscal); exit;
 
                 if ($nfce->status_id == config('constantes.status.EM_PROCESSAMENTO')) {
                     return $retorno;
