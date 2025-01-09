@@ -32,10 +32,10 @@ class PdvVendaApiController extends Controller
         $retorno = $this->pdvVendaService->getVendaPorId($pdvVenda);
         return new PdvVendaResource($retorno);
     }
-    
+
     public function finalizarVenda(Request $request){
         echo "<pre>";
-        print_r($request);
+        print_r($request->all());
         exit;
         return $this->pdvVendaService->finalizarVenda($request->all());
     }
