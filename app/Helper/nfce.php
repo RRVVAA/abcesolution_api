@@ -121,8 +121,6 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
         NfceItem::create(objToArray($item));
     }
 
-    print_r($pdvVenda->duplicatas); exit;
-
     //Duplicata
     NfceDuplicata::where("nfce_id", $id_nfce)->delete();
     if ($pdvVenda->duplicatas) {
@@ -135,10 +133,12 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
             $dup->vDup = $ft->vDup;
             $dup->tPag = $ft->tPag;
             $dup->obs = $ft->obs;
-            NfceDuplicata::Create(objToArray($dup));
+            $nfceDuplicata = NfceDuplicata::Create(objToArray($dup));
             $contFatura++;
         }
     }
+
+    print_r($nfceDuplicata); exit;
     DB::commit();
 
     return $id_nfce;
