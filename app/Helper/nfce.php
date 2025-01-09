@@ -8,6 +8,7 @@ use App\Services\ConstanteService;
 
 function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
 {
+    DB::beginTransaction();
     $emitente = Emitente::where("empresa_id", $pdvVenda->empresa_id)->first();
 
     $nota = new \stdClass();
@@ -121,7 +122,8 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
     }
 
     //Duplicata
-    //NfceDuplicata::where("nfce_id", $id_nfce)->delete();
+    NfceDuplicata::where("nfce_id", $id_nfce)->delete();
+    i($pdvVenda->duplicatas);
     if ($pdvVenda->duplicatas) {
         $contFatura = 1;
         foreach ($pdvVenda->duplicatas as $ft) {
@@ -136,6 +138,7 @@ function inserirNfcePelaVenda($pdvVenda, $natureza_operacao)
             $contFatura++;
         }
     }
+    DB::commit();
 
     return $id_nfce;
 }
