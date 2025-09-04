@@ -38,7 +38,7 @@ class PdvController extends Controller{
                 if(!$envio->tem_erro){
                     return response()->json($envio, 200);
                 }else{
-                    print_r($xml_assinado->xml);
+                    //print_r($xml_assinado->xml);
                     return response()->json($envio, 201);
                 }
             }else{
