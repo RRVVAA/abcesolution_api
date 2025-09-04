@@ -533,13 +533,6 @@ class NfceTagService
             }
             $nfe->tagdetPag($std);
         }
-
-        foreach ($pagamentos as $pagamento) {
-            $std = new \stdClass();
-            $std->tPag = zeroEsquerda($pagamento->tPag, 2);
-            $std->vPag = formataNumero($pagamento->vPag);
-            $nfe->tagdetPag($std);
-        }
     }
 
 
