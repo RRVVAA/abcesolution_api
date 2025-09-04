@@ -108,6 +108,8 @@ class NfceService
         $std->vTroco = $notafiscal->nota->vTroco;
         $nfe->tagpag($std);
 
+        print_r($notafiscal->pagamentos); exit;
+
         if (count($notafiscal->pagamentos) > 0) {
             if ($notafiscal->nota->finNFe == 3 || $notafiscal->nota->finNFe == 4) {
                 $std = new \stdClass();
