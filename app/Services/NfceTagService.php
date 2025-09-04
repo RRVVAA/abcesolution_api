@@ -518,19 +518,26 @@ class NfceTagService
     public static function pagamentos($nfe, $pagamentos)
     {
         foreach ($pagamentos as $pag) {
+            $forma_pagamento = zeroEsquerda($pag->tPag, 2);
+            $valor_pagamento = formataNumero($pag->vPag);
             $std = new \stdClass();
-            $std->tPag = $pag->forma_pagamento; // Ex: '01' para Dinheiro, '03' para Cartão de Crédito
-            $std->vPag = number_format($pag->valor_recebido, 2, '.', ''); // Garante o formato com 2 casas decimais
-            // Verifica se a forma de pagamento é Cartão de Crédito ('03') ou Débito ('04')
-            if (in_array($pag->forma_pagamento, ['03', '04'])) {
-                // Se for, cria o grupo <card>
+            $std->tPag = $forma_pagamento;
+            $std->vPag = $valor_pagamento;
+
+            if (in_array($forma_pagamento, ['03', '04'])) {
                 $std->card = new \stdClass();
                 // Tipo de Integração: 1 = TEF, 2 = POS (não integrado). Usaremos 2 como padrão.
                 $std->card->tpIntegra = 2;
                 // Bandeira do Cartão: conforme sua solicitação, valor fixo '01' (Visa).
-                // Nota: Se a bandeira não for conhecida, o código '99' (Outros) é o recomendado.
                 $std->card->tBand = '01';
             }
+            $nfe->tagdetPag($std);
+        }
+
+        foreach ($pagamentos as $pagamento) {
+            $std = new \stdClass();
+            $std->tPag = zeroEsquerda($pagamento->tPag, 2);
+            $std->vPag = formataNumero($pagamento->vPag);
             $nfe->tagdetPag($std);
         }
     }
