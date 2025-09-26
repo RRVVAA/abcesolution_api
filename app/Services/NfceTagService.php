@@ -521,7 +521,7 @@ class NfceTagService
             $forma_pagamento = zeroEsquerda($pag->tPag, 2);
             $valor_pagamento = formataNumero($pag->vPag);
             $std = new \stdClass();
-            $std->tPag = (in_array($forma_pagamento, ['03', '04']) ? '01' : $forma_pagamento);
+            $std->tPag = (in_array($forma_pagamento, ['03', '04', '18', '20']) ? '01' : $forma_pagamento);
             $std->vPag = $valor_pagamento;
 
             if (in_array($forma_pagamento, ['03', '04'])) {
@@ -534,7 +534,6 @@ class NfceTagService
             $nfe->tagdetPag($std);
         }
     }
-
 
     public static function totais($nfe, $notafiscal)
     {
