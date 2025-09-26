@@ -524,13 +524,13 @@ class NfceTagService
             $std->tPag = (in_array($forma_pagamento, ['03', '04', '18', '20']) ? '01' : $forma_pagamento);
             $std->vPag = $valor_pagamento;
 
-            if (in_array($forma_pagamento, ['03', '04'])) {
-                $std->card = new \stdClass();
-                // Tipo de Integração: 1 = TEF, 2 = POS (não integrado). Usaremos 2 como padrão.
-                $std->card->tpIntegra = 2;
-                // Bandeira do Cartão: conforme sua solicitação, valor fixo '01' (Visa).
-                $std->card->tBand = '01';
-            }
+//            if (in_array($forma_pagamento, ['03', '04'])) {
+//                $std->card = new \stdClass();
+//                // Tipo de Integração: 1 = TEF, 2 = POS (não integrado). Usaremos 2 como padrão.
+//                $std->card->tpIntegra = 2;
+//                // Bandeira do Cartão: conforme sua solicitação, valor fixo '01' (Visa).
+//                $std->card->tBand = '01';
+//            }
             $nfe->tagdetPag($std);
         }
     }
