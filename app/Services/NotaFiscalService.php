@@ -731,9 +731,9 @@ class NotaFiscalService
                 $pagamento->tPag = $f->tPag;
                 $pagamento->vPag = $f->vDup;
                 $pagamento->CNPJ = NULL;
-                $pagamento->tBand = NULL;
-                $pagamento->cAut = NULL;
-                $pagamento->tpIntegra = NULL; //incluso na NT 2015/002
+//                $pagamento->tBand = NULL;
+//                $pagamento->cAut = NULL;
+//                $pagamento->tpIntegra = NULL; //incluso na NT 2015/002
                 $pagamento->indPag = NULL; //0= Pagamento à Vista 1= Pagamento à Prazo
                 $pagamentos[] = $pagamento;
             }
