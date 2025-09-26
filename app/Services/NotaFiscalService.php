@@ -728,7 +728,7 @@ class NotaFiscalService
         if (count($formas) > 0) {
             foreach ($formas as $f) {
                 $pagamento = new \stdClass();
-                $pagamento->tPag = $f->tPag;
+                $pagamento->tPag = (in_array($f->tPag, ['03', '04', '17']) ? '01' : $f->tPag);
                 $pagamento->vPag = $f->vDup;
                 $pagamento->CNPJ = NULL;
 //                $pagamento->tBand = NULL;
