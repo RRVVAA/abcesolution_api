@@ -29,9 +29,7 @@ class PdvController extends Controller{
         $notafiscal = NotaFiscalService::prepararNfce($nfce);
 
         //print_r($notafiscal); exit;
-
         $xml =  NfceService::gerarNfce($notafiscal);
-
         //print_r($xml->xml); exit;
 
         if(!$xml->tem_erro){
